@@ -9,14 +9,6 @@
       </div>
     </div>
 
-    <!-- Toggle (desktop: absolute center, mobile: between halves) -->
-    <div class="toggle-wrap" :style="{ left: isDevMode ? '48%' : '56%' }">
-      <button class="toggle-btn" @click="$emit('toggle')" :title="isDevMode ? t('hero.toggleToSales') : t('hero.toggleToDev')">
-        <span class="toggle-icon">{{ isDevMode ? '💼' : '💻' }}</span>
-      </button>
-      <span class="toggle-label">{{ isDevMode ? t('hero.toggleToSales') : t('hero.toggleToDev') }}</span>
-    </div>
-
     <div class="hero-half hero-right" :class="{ active: isDevMode }">
       <div class="hero-content">
         <div class="hero-icon">💻</div>

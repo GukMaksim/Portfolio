@@ -5,6 +5,7 @@ export const locale = ref('ua')
 const messages = {
   ua: {
     nav: {
+      mode: 'режим',
       manager: 'Менеджер',
       developer: 'Розробник',
     },
@@ -88,6 +89,7 @@ const messages = {
   },
   en: {
     nav: {
+      mode: 'mode',
       manager: 'Manager',
       developer: 'Developer',
     },

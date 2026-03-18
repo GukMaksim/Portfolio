@@ -139,13 +139,27 @@ img {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 12px;
+  gap: 24px;
   padding: 12px 32px;
   background: var(--header-bg);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--header-border);
   transition: background var(--transition), border-color var(--transition);
+}
+
+.mode-switch {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mode-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .lang-toggle {
@@ -202,7 +216,6 @@ img {
   position: relative;
   transition: flex var(--transition);
 }
-
 .hero-left {
   background: var(--hero-left-bg);
   clip-path: polygon(0 0, 100% 0, 92% 100%, 0 100%);
@@ -288,63 +301,6 @@ img {
   flex: 0.85;
   opacity: 0.7;
 }
-
-/* ============================================
-   CENTRAL TOGGLE
-   ============================================ */
-.toggle-wrap {
-  position: absolute;
-  top: 50%;
-  /* left: 50%; */
-  transform: translate(-50%, -50%);
-  z-index: 10;
-  transition: left 0.5s ease;
-}
-
-.toggle-btn {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  border: 3px solid rgba(255, 255, 255, 0.5);
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 28px;
-  color: #ffffff;
-  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
-  position: relative;
-  overflow: hidden;
-}
-
-.toggle-btn:hover {
-  transform: scale(1.15);
-  border-color: rgba(255, 255, 255, 0.8);
-  box-shadow: 0 0 60px rgba(255, 255, 255, 0.15);
-}
-
-.toggle-btn:active {
-  transform: scale(0.95);
-}
-
-.toggle-label {
-  position: absolute;
-  bottom: -32px;
-  left: 50%;
-  transform: translateX(-50%);
-  white-space: nowrap;
-  font-size: 11px;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.7);
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  font-family: 'Inter', sans-serif;
-}
-
 /* ============================================
    SECTIONS
    ============================================ */
@@ -819,22 +775,6 @@ img {
     margin-left: 0 !important;
   }
 
-  .toggle-wrap {
-    position: relative;
-    top: auto;
-    left: auto;
-    transform: none;
-    display: flex;
-    justify-content: center;
-    padding: 20px 0;
-    background: var(--bg-primary);
-    transition: background var(--transition);
-  }
-
-  .toggle-label {
-    bottom: -28px;
-  }
-
   .hero-half.active,
   .hero-half:not(.active) {
     flex: 1;
@@ -908,11 +848,5 @@ img {
 
   .achievement-value {
     font-size: 1.8rem;
-  }
-
-  .toggle-btn {
-    width: 60px;
-    height: 60px;
-    font-size: 24px;
   }
 }

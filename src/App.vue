@@ -1,7 +1,27 @@
 <template>
   <div :class="isDevMode ? 'theme-dev' : 'theme-sales'">
-    <!-- Top Header with Language Toggle -->
+    <!-- Top Header with Language & Mode Toggle -->
     <header class="top-header">
+      <div class="mode-switch">
+        <span class="mode-label">{{ t('nav.mode') }}:</span>
+        <div class="lang-toggle">
+          <button
+            class="lang-btn"
+            :class="{ active: !isDevMode }"
+            @click="isDevMode = false"
+          >
+            {{ t('nav.manager') }}
+          </button>
+          <button
+            class="lang-btn"
+            :class="{ active: isDevMode }"
+            @click="isDevMode = true"
+          >
+            {{ t('nav.developer') }}
+          </button>
+        </div>
+      </div>
+
       <div class="lang-toggle">
         <button
           class="lang-btn"
@@ -40,7 +60,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { locale } from './i18n.js'
+import { locale, t } from './i18n.js'
 import HeroSection from './components/HeroSection.vue'
 import SalesTimeline from './components/SalesTimeline.vue'
 import DevProjects from './components/DevProjects.vue'
