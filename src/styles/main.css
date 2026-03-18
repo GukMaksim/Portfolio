@@ -60,6 +60,7 @@ img {
   --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-heading: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'Fira Code', monospace;
+  --font-secondary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --radius: 16px;
   --radius-sm: 8px;
   --transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -94,6 +95,7 @@ img {
   --font-primary: 'Fira Code', monospace;
   --font-heading: 'Fira Code', monospace;
   --font-mono: 'Fira Code', monospace;
+  --font-secondary: 'Fira Code', monospace;
   --radius: 12px;
   --radius-sm: 6px;
   --transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -184,8 +186,8 @@ img {
    ============================================ */
 .hero {
   position: relative;
-  height: 100vh;
-  min-height: 600px;
+  height: 60vh;
+  /* min-height: 600px; */
   display: flex;
   overflow: hidden;
 }
@@ -205,6 +207,7 @@ img {
   background: var(--hero-left-bg);
   clip-path: polygon(0 0, 100% 0, 92% 100%, 0 100%);
   z-index: 1;
+  font-family: 'Inter', sans-serif;
 }
 
 .hero-right {
@@ -212,6 +215,7 @@ img {
   clip-path: polygon(8% 0, 100% 0, 100% 100%, 0 100%);
   margin-left: -8%;
   z-index: 0;
+  font-family: var(--font-mono);
 }
 
 /* Subtle animated particles / grid on dev side */
@@ -259,7 +263,7 @@ img {
   color: #ffffff;
   margin-bottom: 8px;
   letter-spacing: -0.02em;
-  font-family: 'Inter', sans-serif;
+  /* font-family: 'Inter', sans-serif; */
 }
 
 .hero-title {
@@ -277,7 +281,7 @@ img {
 
 /* Active half highlight */
 .hero-half.active {
-  flex: 1.15;
+  flex: 2.15;
 }
 
 .hero-half:not(.active) {
@@ -291,9 +295,10 @@ img {
 .toggle-wrap {
   position: absolute;
   top: 50%;
-  left: 50%;
+  /* left: 50%; */
   transform: translate(-50%, -50%);
   z-index: 10;
+  transition: left 0.5s ease;
 }
 
 .toggle-btn {
@@ -528,6 +533,10 @@ img {
 /* ============================================
    DEV — TECH STACK
    ============================================ */
+.dev-stack {
+  background-color: var(--bg-primary);
+}
+
 .stack-grid {
   display: flex;
   flex-wrap: wrap;
@@ -584,6 +593,7 @@ img {
   transform: translateY(30px);
   animation: fadeUpCard 0.6s ease forwards;
   position: relative;
+  font-family: var(--font-mono);
 }
 
 .project-card:nth-child(1) { animation-delay: 0.1s; }
@@ -662,7 +672,7 @@ img {
    ============================================ */
 .typewriter {
   display: inline;
-  border-right: 2.5px solid var(--accent);
+  border-right: 5px solid var(--accent);
   animation: cursorBlink 1s step-end infinite;
 }
 
@@ -675,6 +685,7 @@ img {
    FOOTER
    ============================================ */
 .footer {
+  font-family: var(--font-secondary);
   background: var(--bg-secondary);
   border-top: 1px solid var(--card-border);
   padding: 80px 0 40px;
@@ -689,7 +700,7 @@ img {
 }
 
 .footer-col-title {
-  font-family: var(--font-heading);
+  /* font-family: var(--font-heading); */
   font-size: 0.85rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -700,6 +711,7 @@ img {
 }
 
 .footer-text {
+  /* font-family: var(--font-secondary); */
   font-size: 0.95rem;
   color: var(--text-secondary);
   line-height: 1.8;
@@ -755,6 +767,7 @@ img {
 }
 
 .footer-bottom {
+  font-family: var(--font-secondary);
   text-align: center;
   padding-top: 32px;
   border-top: 1px solid var(--card-border);

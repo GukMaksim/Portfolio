@@ -10,7 +10,7 @@ const messages = {
     },
     hero: {
       name: 'Максим Гук',
-      salesTitle: 'Sales Manager',
+      salesTitle: 'Менеджер з продажу ІТ-рішень',
       devTitle: 'Frontend Developer',
       salesTagline: 'B2B продажі • Тендери • Управління проєктами',
       devTagline: 'Vue.js • React • Node.js • Сучасний Web',
@@ -93,7 +93,7 @@ const messages = {
     },
     hero: {
       name: 'Maksym Huk',
-      salesTitle: 'Sales Manager',
+      salesTitle: 'IT Sales Manager',
       devTitle: 'Frontend Developer',
       salesTagline: 'B2B Sales • Tenders • Project Management',
       devTagline: 'Vue.js • React • Node.js • Modern Web',

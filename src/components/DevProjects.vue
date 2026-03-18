@@ -1,5 +1,5 @@
 <template>
-  <section class="section" id="dev-stack">
+  <section class="section dev-stack" id="dev-stack">
     <div class="container">
       <h2 class="section-title" style="text-align: center;">
         <span class="typewriter" ref="typewriterEl">{{ displayedTitle }}</span>
@@ -17,7 +17,9 @@
 
   <section class="section section-alt" id="dev-projects">
     <div class="container">
-      <h2 class="section-title" style="text-align: center;">{{ t('dev.projectsTitle') }}</h2>
+      <h2 class="section-title" style="text-align: center;">
+        <span class="typewriter" ref="typewriterEl">{{ t('dev.projectsTitle') }}</span>
+      </h2>
       <div style="height: 48px;"></div>
 
       <div class="projects-grid" :key="'proj-' + locale">
@@ -60,7 +62,7 @@ function typewrite(text) {
     } else {
       clearInterval(typewriterTimer)
     }
-  }, 60)
+  }, 80)
 }
 
 onMounted(() => {
