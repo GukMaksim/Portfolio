@@ -226,6 +226,7 @@ img {
 	padding: 60px 40px;
 	transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
 	overflow: hidden;
+  	cursor: pointer;
 }
 
 /* Base side backgrounds */
@@ -267,16 +268,12 @@ img {
 	filter: grayscale(0.5) blur(1.4px);
 }
 
-.hero-half.clickable {
-	cursor: pointer;
-}
-
-.hero-half.clickable:hover {
+.hero-half:hover {
 	opacity: 0.7;
 	filter: grayscale(0) blur(0);
 }
 
-.hero-half.clickable:hover .hero-icon {
+.hero-half:hover .hero-icon {
 	transform: scale(1.2) rotate(10deg);
 }
 

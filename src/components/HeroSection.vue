@@ -3,8 +3,8 @@
     <!-- Sales Side -->
     <div 
       class="hero-half hero-left" 
-      :class="{ active: !isDevMode, clickable: isDevMode }"
-      @click="isDevMode && $emit('toggle')"
+      :class="{ active: !isDevMode }"
+      @click="$emit('toggle')"
     >
       <div class="hero-photo-wrapper" v-if="!isDevMode">
         <div class="hero-photo-placeholder">
@@ -23,8 +23,8 @@
     <!-- Dev Side -->
     <div 
       class="hero-half hero-right" 
-      :class="{ active: isDevMode, clickable: !isDevMode }"
-      @click="!isDevMode && $emit('toggle')"
+      :class="{ active: isDevMode }"
+      @click="$emit('toggle')"
     >
       <div class="hero-photo-wrapper" v-if="isDevMode">
         <div class="hero-photo-placeholder">
