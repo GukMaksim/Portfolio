@@ -29,22 +29,30 @@
           <h3 class="footer-col-title">{{ t('footer.contactsTitle') }}</h3>
 
           <a href="tel:+380676082262" class="footer-contact-item">
-            <span class="footer-contact-icon">📞</span>
+            <span class="footer-contact-icon">
+              <svg><use :href="`${iconSprite}#phone-icon`"></use></svg>
+            </span>
             <span>+38 067 608-22-62</span>
           </a>
 
           <a href="mailto:maksim.guk@gmail.com" class="footer-contact-item">
-            <span class="footer-contact-icon">✉️</span>
+            <span class="footer-contact-icon">
+              <svg><use :href="`${iconSprite}#email-icon`"></use></svg>
+            </span>
             <span>maksim.guk@gmail.com</span>
           </a>
 
           <a href="https://linkedin.com/in/maksymhuk" target="_blank" rel="noopener" class="footer-contact-item">
-            <span class="footer-contact-icon">🔗</span>
+            <span class="footer-contact-icon">
+              <svg><use :href="`${iconSprite}#linkedin-icon`"></use></svg>
+            </span>
             <span>LinkedIn</span>
           </a>
 
           <a href="https://github.com/maksymhuk" target="_blank" rel="noopener" class="footer-contact-item">
-            <span class="footer-contact-icon">🐙</span>
+            <span class="footer-contact-icon">
+              <svg><use :href="`${iconSprite}#github-icon`"></use></svg>
+            </span>
             <span>GitHub</span>
           </a>
         </div>
@@ -59,4 +67,5 @@
 
 <script setup>
 import { t } from '../i18n.js'
+const iconSprite = `${import.meta.env.BASE_URL}icons.svg`
 </script>
