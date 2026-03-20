@@ -23,7 +23,7 @@ const messages = {
       achievementsTitle: 'Ключові досягнення',
       timeline: [
         {
-          company: 'Integrity Systems, Київ (ІТ)',
+          company: 'Integrity Systems - (ІТ)',
           role: 'Менеджер по роботі з корпоративними замовниками',
           period: '2015 — дотепер',
           logo: 'logo_IS.jpg',
@@ -39,7 +39,7 @@ const messages = {
           ],
         },
         {
-          company: 'AM Integrator Group, Київ (ІТ)',
+          company: 'AM Integrator Group - (ІТ)',
           role: 'Менеджер з корпоративних продажів',
           period: '2012 — 2015',
           logo: 'logo_AMI.png',
@@ -53,7 +53,7 @@ const messages = {
           ],
         },
         {
-          company: 'Bakotech, Київ (ІТ)',
+          company: 'Bakotech - (ІТ)',
           role: 'Спеціаліст з продажу та ліцензування ПЗ',
           period: '2011 — 2012',
           logo: 'logo_Bakotech.png',
@@ -65,7 +65,7 @@ const messages = {
           ],
         },
         {
-          company: 'Піцерія-бар «Da Favola», Київ (Готельно-ресторанний бізнес)',
+          company: 'Піцерія-бар «Da Favola» - (Готельно-ресторанний бізнес)',
           role: 'Директор',
           period: '2010 — 2011',
           logo: 'logo_no-logo.png',
@@ -83,7 +83,7 @@ const messages = {
           ],
         },
         {
-          company: 'Комунальна служба перевезень ВО КМДА, Київ (Державні організації)',
+          company: 'Комунальна служба перевезень ВО КМДА - (Державні організації)',
           role: 'Спеціаліст 1 категорії відділу розвитку маршрутної інфраструктури',
           period: '2009 — 2009',
           logo: 'logo_KMDA.png',
@@ -95,7 +95,7 @@ const messages = {
           ],
         },
         {
-          company: 'Fozzy Group, Київ (Готельно-ресторанний бізнес)',
+          company: 'Fozzy Group - (Готельно-ресторанний бізнес)',
           role: 'Начальник операційного відділу ІТ, бізнес «Ресторани»',
           period: '2005 — 2009',
           logo: 'logo_Fozzy.png',
@@ -147,14 +147,17 @@ const messages = {
     },
     footer: {
       educationTitle: 'Освіта',
-      education: 'НТУУ «КПІ» — Радіоелектроніка',
+      education: [
+        {edu: '1999 - 2004 НТУУ «КПІ» — Радіоелектроніка (Конструювання та виробництво електрообчислювальної апаратури), Магістр'},
+        {edu: '2022 - 2023 DAN.IT Education — Frontend Developer', certificate: 'https://certificates.dan-it.com.ua/certificates/frontend/maksym-huk'},
+      ],
       languagesTitle: 'Мови',
       languages: [
         { lang: 'Українська', level: 'Вільно' },
         { lang: 'English', level: 'Pre-Intermediate' },
       ],
       contactsTitle: 'Контакти',
-      rights: '© 2024 Максим Гук. Усі права захищені.',
+      rights: '© 2026 Максим Гук. Усі права захищені.',
     },
   },
   en: {
@@ -177,45 +180,97 @@ const messages = {
       achievementsTitle: 'Key Achievements',
       timeline: [
         {
-          company: 'Integrity Systems',
-          role: 'Sales Manager / IT Sales',
-          period: '2016 — Present',
+          company: 'Integrity Systems - (IT)',
+          role: 'Corporate Account Manager',
+          period: '2015 — Present',
           logo: 'logo_IS.jpg',
-          description: 'Sales of complex IT solutions for the corporate sector. Working with tenders, B2B sales, and strategic partners.',
+          description: 'Selling comprehensive IT solutions for the corporate and public sectors. Working with tenders, B2B sales and strategic partners.',
           responsibilities: [
             'Customer search and partner network development',
             'Maintaining long-term relationships with customers',
             'Participation in tenders, preparation of tender documentation',
+            'Preparation of commercial offers and conclusion of agreements',
+            'Preparation and conclusion of contracts, preparation and control of primary documentation in projects',
+            'Support and control of project implementation from identifying the need to shipment and payment',
+            'Participation in marketing events for customers'
           ],
         },
         {
-          company: 'AM Integrator Group',
-          role: 'Sales Manager',
-          period: '2014 — 2016',
-          logo: 'logo_IS.jpg',
-          description: 'Client base development, negotiations and contract management in the system integration field.',
+          company: 'AM Integrator Group - (IT)',
+          role: 'Corporate Sales Manager',
+          period: '2012 — 2015',
+          logo: 'logo_AMI.png',
+          description: 'Development of the client base, negotiations and conclusion of contracts in the field of system integration.',
           responsibilities: [
             'Sales of complex IT projects',
-            'Working with hardware and software manufacturers',
-            'Negotiations and contracting',
+            'Participation in tenders, preparation of tender proposals',
+            'Building and developing a partner network',
+            'Negotiations and conclusion of contracts',
+            'Support and control of project implementation'
           ],
         },
         {
-          company: 'Bakotech',
-          role: 'Account Manager',
-          period: '2012 — 2014',
-          logo: 'logo_IS.jpg',
-          description: 'Key account management, development of the partner network for an IT solutions distributor.',
+          company: 'Bakotech - (IT)',
+          role: 'Software Sales and Licensing Specialist',
+          period: '2011 — 2012',
+          logo: 'logo_Bakotech.png',
+          description: 'Key account management, development of the partner network of the IT solutions distributor.',
           responsibilities: [
             'Support and development of the partner network',
-            'Working with vendors (F5, Palo Alto, Arista)',
-            'Organizing marketing events for partners',
+            'Sale of licensed software',
+            'Consultative support for partners on software licensing',
+          ],
+        },
+        {
+          company: 'Da Favola - (Restaurant business)',
+          role: 'Director',
+          period: '2010 — 2011',
+          logo: 'logo_no-logo.png',
+          description: 'Operational management of the establishment, covering financial planning, work with suppliers, control of service standards and administration of personnel and technical processes',
+          responsibilities: [
+            'Ensuring stable operation of equipment and software',
+            'Recruitment of staff',
+            'Timekeeping and bonus calculation based on work results',
+            'Quality control of guest service and department operations',
+            'Work with suppliers and control of product quality',
+            'Control of financial performance of the establishment',
+            'Development of employee standards and operational reporting',
+            'Budget planning for the purchase of goods and inventory',
+            'Organization and control of personnel work'
+          ],
+        },
+        {
+          company: 'Communal Transport Service of Kyiv City State Administration - (State organizations)',
+          role: 'Specialist of the 1st category of the Department of Transport Route Infrastructure Development',
+          period: '2009 — 2009',
+          logo: 'logo_KMDA.png',
+          description: 'Ensuring the IT infrastructure of the department, development and administration of the Main Department website, as well as technical support and implementation of the electronic document management system',
+          responsibilities: [
+            'Development of technical specifications, implementation and technical support of the electronic document management system',
+            'Ensuring the operability of computer equipment',
+            'Development and implementation of the website of the Main Department of Transport of Kyiv'
+          ],
+        },
+        {
+          company: 'Fozzy Group - (Restaurant business)',
+          role: 'Head of IT Operations Department, Restaurants Business',
+          period: '2005 — 2009',
+          logo: 'logo_Fozzy.png',
+          description: '',
+          responsibilities: [
+            'Software and technical support of computer equipment, communication channels and organization of information flows of sales departments of a restaurant chain',
+            'Information support of chain restaurants',
+            'Operational analysis of the company\'s trading activities',
+            'Budget planning for the purchase and modernization of computer equipment for employees',
+            'Development of IT standards for employee work and operational reporting',
+            'Maintaining technical documentation, preparing and creating reports on trading activities based on data sampling from the database',
+            'Information and technical support of users'
           ],
         },
       ],
       achievements: [
         { value: '50+', label: 'Successful Tenders' },
-        { value: '8+', label: 'Years in B2B Sales' },
+        { value: '10+', label: 'Years in B2B Sales' },
         { value: '5', label: 'Restaurants (Fozzy Group)' },
         { value: '100+', label: 'Corporate Clients' },
       ],

@@ -5,7 +5,10 @@
         <!-- Education -->
         <div class="footer-col">
           <h3 class="footer-col-title">{{ t('footer.educationTitle') }}</h3>
-          <p class="footer-text">{{ t('footer.education') }}</p>
+          <div v-for="(item, index) in t('footer.education')" :key="index">
+            <p class="footer-text">{{ item.edu }}</p>
+            <a v-if="item.certificate" :href="item.certificate" target="_blank" rel="noopener" class="footer-certificate">Сертифікат</a>
+          </div>
         </div>
 
         <!-- Languages -->
