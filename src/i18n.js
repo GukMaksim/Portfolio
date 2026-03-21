@@ -304,14 +304,17 @@ const messages = {
     },
     footer: {
       educationTitle: 'Education',
-      education: 'NTUU "KPI" — Radioelectronics',
+      education: [
+        {edu: '1999 - 2004 NTUU "KPI" — Radioelectronics (Design and production of electronic computing equipment), Master'},
+        {edu: '2022 - 2023 DAN.IT Education — Frontend Developer', certificate: 'https://certificates.dan-it.com.ua/certificates/frontend/maksym-huk'},
+      ],
       languagesTitle: 'Languages',
       languages: [
         { lang: 'Ukrainian', level: 'Fluent' },
         { lang: 'English', level: 'Pre-Intermediate' },
       ],
       contactsTitle: 'Contacts',
-      rights: '© 2024 Maksym Huk. All rights reserved.',
+      rights: '© 2026 Maksym Huk. All rights reserved.',
     },
   },
 }

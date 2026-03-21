@@ -1,6 +1,5 @@
 <template>
   <div :class="isDevMode ? 'theme-dev' : 'theme-sales'">
-    <!-- Top Header with Language & Mode Toggle -->
     <HeaderSection v-model:isDevMode="isDevMode" />
 
     <HeroSection :isDevMode="isDevMode" @toggle="toggleMode" />
