@@ -224,9 +224,8 @@ const setMode = (val) => {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: top;
-  scale: 1.5;
-  transform: translateY(22px);
+  object-position: 50% -50%;
+  transform: scale(1.5);
 }
 
 .hero-name {
