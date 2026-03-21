@@ -1,10 +1,9 @@
 <template>
-  <section class="hero" id="hero">
+  <section class="hero" @click="setMode(!isDevMode)" id="hero">
     <!-- Sales Side -->
     <div 
       class="hero-half hero-left" 
       :class="{ active: !isDevMode }"
-      @click="setMode(false)"
     >
       <div class="hero-photo-wrapper" v-if="!isDevMode">
         <div class="hero-photo-placeholder">
@@ -12,7 +11,10 @@
         </div>
       </div>
       <div class="hero-content">
-        <div class="hero-icon">💼</div>
+        <div class="hero-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hero-svg"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+          <img src="../assets/photo_manager.png" alt="Sales manager" class="hero-mobile-photo">
+        </div>
         <h1 class="hero-name">{{ t('hero.name') }}</h1>
         <p class="hero-title">{{ t('hero.salesTitle') }}</p>
         <p class="hero-tagline">{{ t('hero.salesTagline') }}</p>
@@ -23,7 +25,6 @@
     <div 
       class="hero-half hero-right" 
       :class="{ active: isDevMode }"
-      @click="setMode(true)"
     >
       <div class="hero-photo-wrapper" v-if="isDevMode">
         <div class="hero-photo-placeholder">
@@ -31,7 +32,10 @@
         </div>
       </div>
       <div class="hero-content">
-        <div class="hero-icon">💻</div>
+        <div class="hero-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hero-svg"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+          <img src="../assets/photo_developer.png" alt="Developer" class="hero-mobile-photo">
+        </div>
         <h1 class="hero-name">{{ t('hero.name') }}</h1>
         <p class="hero-title">{{ t('hero.devTitle') }}</p>
         <p class="hero-tagline">{{ t('hero.devTagline') }}</p>
@@ -128,7 +132,7 @@ const setMode = (val) => {
 }
 
 .hero-half:hover .hero-icon {
-	transform: scale(1.2) rotate(10deg);
+	transform: scale(1.2);
 }
 
 /* Content Layout with Photos */
@@ -201,11 +205,28 @@ const setMode = (val) => {
 	align-items: center;
 	justify-content: center;
 	margin: 0 auto 24px;
-	font-size: 32px;
 	background: rgba(255, 255, 255, 0.12);
 	backdrop-filter: blur(10px);
 	border: 1.5px solid rgba(255, 255, 255, 0.2);
 	transition: all 0.5s ease;
+  	overflow: hidden;
+}
+
+.hero-svg {
+  display: block;
+  color: #fff;
+  width: 32px;
+  height: 32px;
+}
+
+.hero-mobile-photo {
+  display: none;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  scale: 1.5;
+  transform: translateY(22px);
 }
 
 .hero-name {
@@ -247,6 +268,18 @@ const setMode = (val) => {
 	.hero-photo-wrapper {
 		display: none;
 	}
+  .hero-icon {
+    width: 140px;
+    height: 140px;
+    margin-bottom: 24px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+  }
+  .hero-svg {
+    display: none;
+  }
+  .hero-mobile-photo {
+    display: block;
+  }
 }
 
 @media (max-width: 768px) {
