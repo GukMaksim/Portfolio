@@ -119,6 +119,10 @@ const iconSprite = `${import.meta.env.BASE_URL}icons.svg`
 	transition: color var(--transition);
 }
 
+.footer-certificate:hover {
+	color: var(--accent);
+}
+
 .footer-lang-item {
 	display: flex;
 	justify-content: space-between;
