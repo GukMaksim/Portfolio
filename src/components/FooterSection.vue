@@ -49,7 +49,7 @@
             <span>LinkedIn</span>
           </a>
 
-          <a href="https://github.com/maksymhuk" target="_blank" rel="noopener" class="footer-contact-item">
+          <a href="https://github.com/GukMaksim" target="_blank" rel="noopener" class="footer-contact-item">
             <span class="footer-contact-icon">
               <svg><use :href="`${iconSprite}#github-icon`"></use></svg>
             </span>

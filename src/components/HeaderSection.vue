@@ -1,32 +1,61 @@
 <template>
-  <div :class="isDevMode ? 'theme-dev' : 'theme-sales'">
-    <HeaderSection v-model:isDevMode="isDevMode" />
-
-    <HeroSection v-model:isDevMode="isDevMode" />
-
-    <!-- Content: Sales or Dev -->
-    <Transition name="fade" mode="out-in">
-      <div v-if="!isDevMode" key="sales">
-        <SalesTimeline />
+  <header class="top-header">
+    <div class="mode-switch">
+      <span class="mode-label">{{ t('nav.mode') }}:</span>
+      <div class="lang-toggle">
+        <button
+          class="lang-btn"
+          :class="{ active: !isDevMode }"
+          @click="setMode(false)"
+        >
+          {{ t('nav.manager') }}
+        </button>
+        <button
+          class="lang-btn"
+          :class="{ active: isDevMode }"
+          @click="setMode(true)"
+        >
+          {{ t('nav.developer') }}
+        </button>
       </div>
-      <div v-else key="dev">
-        <DevProjects />
-      </div>
-    </Transition>
+    </div>
 
-    <FooterSection />
-  </div>
+    <div class="lang-toggle">
+      <button
+        class="lang-btn"
+        :class="{ active: locale === 'ua' }"
+        @click="locale = 'ua'"
+      >
+        UA
+      </button>
+      <button
+        class="lang-btn"
+        :class="{ active: locale === 'en' }"
+        @click="locale = 'en'"
+      >
+        EN
+      </button>
+    </div>
+  </header>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import HeaderSection from './components/HeaderSection.vue'
-import HeroSection from './components/HeroSection.vue'
-import SalesTimeline from './components/SalesTimeline.vue'
-import DevProjects from './components/DevProjects.vue'
-import FooterSection from './components/FooterSection.vue'
+import { t, locale } from '../i18n.js'
 
-const isDevMode = ref(false)
+const props = defineProps({
+  isDevMode: {
+    type: Boolean,
+    required: true,
+  },
+})
+
+const emit = defineEmits(['update:isDevMode'])
+
+const setMode = (val) => {
+  if (props.isDevMode !== val) {
+    emit('update:isDevMode', val)
+  }
+}
 </script>
 
 <style scoped>
@@ -99,7 +128,7 @@ const isDevMode = ref(false)
 	color: #fff;
 }
 
-.theme-dev .lang-btn.active {
+:global(.theme-dev) .lang-btn.active {
 	color: #0a0a1a;
 }
 
