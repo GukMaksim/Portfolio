@@ -73,6 +73,7 @@ const setMode = (val) => {
 	display: flex;
 	overflow: hidden;
 	background: #000;
+  margin-top: 60px;
 }
 
 .hero-half {
@@ -146,7 +147,7 @@ const setMode = (val) => {
 /* Photo Placeholders */
 .hero-photo-wrapper {
 	position: absolute;
-	top: calc(50% + 30px);
+	top: 50%;
 	transform: translateY(-50%);
 	width: 320px;
 	height: 420px;
