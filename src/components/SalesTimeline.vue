@@ -337,7 +337,7 @@ const getLogoUrl = (name) => {
 }
 
 @media (max-width: 768px) {
-  .timeline {
+	.timeline {
 		padding-left: 30px;
 	}
 

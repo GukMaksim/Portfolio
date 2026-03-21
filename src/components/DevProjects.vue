@@ -110,7 +110,7 @@ onUnmounted(() => {
 	cursor: default;
 }
 
-:global(.theme-dev) .stack-badge {
+.theme-dev .stack-badge {
 	border-color: var(--card-border);
 }
 
@@ -209,7 +209,7 @@ onUnmounted(() => {
 }
 
 /* Neon glow on dev cards */
-:global(.theme-dev) .project-card::after {
+.theme-dev .project-card::after {
 	content: '';
 	position: absolute;
 	inset: -1px;
@@ -220,7 +220,7 @@ onUnmounted(() => {
 	transition: opacity 0.4s ease;
 }
 
-:global(.theme-dev) .project-card:hover::after {
+.theme-dev .project-card:hover::after {
 	opacity: 1;
 }
 

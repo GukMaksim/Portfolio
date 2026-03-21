@@ -133,12 +133,6 @@ img {
 	width: 100%;
 }
 
-@media (max-width: 768px) {
-	.container {
-		padding: 0 16px;
-	}
-}
-
 /* ============================================
    SECTIONS
    ============================================ */
@@ -170,12 +164,6 @@ img {
 	transition: color var(--transition);
 }
 
-@media (max-width: 768px) {
-	.section {
-		padding: 60px 0;
-	}
-}
-
 /* ============================================
    CONTENT TRANSITIONS
    ============================================ */
@@ -194,4 +182,17 @@ img {
 .fade-leave-to {
 	opacity: 0;
 	transform: translateY(-20px);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+	.container {
+		padding: 0 16px;
+	}
+
+	.section {
+		padding: 60px 0;
+	}
 }

@@ -173,7 +173,6 @@ const setMode = (val) => {
 	width: 100%;
 	height: 100%;
 	background: rgba(255, 255, 255, 0.1);
-	/* border: 2px dashed rgba(255, 255, 255, 0.3); */
 	border: none;
 	border-radius: var(--radius);
 	display: flex;
@@ -254,10 +253,11 @@ const setMode = (val) => {
 	.hero {
 		flex-direction: column;
 		height: auto;
+		min-height: auto;
 	}
 
 	.hero-half {
-		min-height: 400px;
+		min-height: 50vh;
 		flex: 1 !important;
 		opacity: 1 !important;
 		filter: none !important;
@@ -265,27 +265,6 @@ const setMode = (val) => {
 
 	.hero-left::after {
 		display: none;
-	}
-
-	.hero {
-		flex-direction: column;
-		height: auto;
-		min-height: auto;
-	}
-
-	.hero-half {
-		min-height: 50vh;
-		clip-path: none !important;
-		margin-left: 0 !important;
-	}
-
-	.hero-left {
-		clip-path: none !important;
-	}
-
-	.hero-right {
-		clip-path: none !important;
-		margin-left: 0 !important;
 	}
 
 	.hero-half.active,
