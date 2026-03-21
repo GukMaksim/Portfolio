@@ -6,14 +6,14 @@
         <button
           class="lang-btn"
           :class="{ active: !isDevMode }"
-          @click="isDevMode = false"
+          @click="setMode(false)"
         >
           {{ t('nav.manager') }}
         </button>
         <button
           class="lang-btn"
           :class="{ active: isDevMode }"
-          @click="isDevMode = true"
+          @click="setMode(true)"
         >
           {{ t('nav.developer') }}
         </button>
@@ -42,7 +42,20 @@
 <script setup>
 import { t, locale } from '../i18n.js'
 
-const isDevMode = defineModel('isDevMode', { required: true, type: Boolean })
+const props = defineProps({
+  isDevMode: {
+    type: Boolean,
+    required: true,
+  },
+})
+
+const emit = defineEmits(['update:isDevMode'])
+
+const setMode = (val) => {
+  if (props.isDevMode !== val) {
+    emit('update:isDevMode', val)
+  }
+}
 </script>
 
 <style scoped>

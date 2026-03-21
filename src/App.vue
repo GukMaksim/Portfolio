@@ -2,7 +2,7 @@
   <div :class="isDevMode ? 'theme-dev' : 'theme-sales'">
     <HeaderSection v-model:isDevMode="isDevMode" />
 
-    <HeroSection :isDevMode="isDevMode" @toggle="toggleMode" />
+    <HeroSection v-model:isDevMode="isDevMode" />
 
     <!-- Content: Sales or Dev -->
     <Transition name="fade" mode="out-in">
@@ -27,8 +27,4 @@ import DevProjects from './components/DevProjects.vue'
 import FooterSection from './components/FooterSection.vue'
 
 const isDevMode = ref(false)
-
-function toggleMode() {
-  isDevMode.value = !isDevMode.value
-}
 </script>

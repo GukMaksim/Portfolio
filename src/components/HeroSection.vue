@@ -4,11 +4,11 @@
     <div 
       class="hero-half hero-left" 
       :class="{ active: !isDevMode }"
-      @click="$emit('toggle')"
+      @click="setMode(false)"
     >
       <div class="hero-photo-wrapper" v-if="!isDevMode">
         <div class="hero-photo-placeholder">
-<img src="../assets/photo_manager.png"" alt="Sales manager">
+          <img src="../assets/photo_manager.png" alt="Sales manager">
         </div>
       </div>
       <div class="hero-content">
@@ -23,7 +23,7 @@
     <div 
       class="hero-half hero-right" 
       :class="{ active: isDevMode }"
-      @click="$emit('toggle')"
+      @click="setMode(true)"
     >
       <div class="hero-photo-wrapper" v-if="isDevMode">
         <div class="hero-photo-placeholder">
@@ -43,14 +43,20 @@
 <script setup>
 import { t } from '../i18n.js'
 
-defineProps({
+const props = defineProps({
   isDevMode: {
     type: Boolean,
     required: true,
   },
 })
 
-defineEmits(['toggle'])
+const emit = defineEmits(['update:isDevMode'])
+
+const setMode = (val) => {
+  if (props.isDevMode !== val) {
+    emit('update:isDevMode', val)
+  }
+}
 </script>
 
 <style scoped>
