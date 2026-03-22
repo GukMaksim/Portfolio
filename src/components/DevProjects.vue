@@ -8,9 +8,10 @@
 
       <!-- Tech Stack Badges -->
       <div class="stack-grid">
-        <span v-for="tech in techStack" :key="tech" class="stack-badge">
-          {{ tech }}
-        </span>
+        <div v-for="tech in techStack" :key="tech.name" class="stack-badge">
+          <svg class="tech-icon"><use :href="`${iconSprite}#${tech.icon}`"></use></svg>
+          <span>{{ tech.name }}</span>
+        </div>
       </div>
     </div>
   </section>
@@ -27,9 +28,11 @@
           v-for="(project, index) in t('dev.projects')"
           :key="index"
           class="project-card"
+          @click="openModal(project)"
         >
           <div class="project-card-header">
             <span class="project-card-tech">{{ project.tech }}</span>
+            <img :src="getImageUrl(project.image)" :alt="project.title" class="project-card-image" loading="lazy" />
             <h3 class="project-card-title">{{ project.title }}</h3>
           </div>
           <div class="project-card-body">
@@ -39,17 +42,78 @@
       </div>
     </div>
   </section>
+
+  <!-- Project Modal -->
+  <Teleport to="body">
+    <Transition name="modal-fade">
+      <div v-if="selectedProject" class="modal-overlay" @click.self="closeModal">
+        <div class="modal-content">
+          <button class="modal-close" @click="closeModal">&times;</button>
+          
+          <div class="modal-image-wrapper">
+            <img :src="getImageUrl(selectedProject.image)" :alt="selectedProject.title" class="modal-image" />
+          </div>
+          
+          <div class="modal-body">
+            <span class="project-card-tech">{{ selectedProject.tech }}</span>
+            <h3 class="modal-title">{{ selectedProject.title }}</h3>
+            <p class="modal-desc">{{ selectedProject.description }}</p>
+            
+            <div class="modal-actions">
+              <a :href="selectedProject.demoLink" target="_blank" rel="noopener" class="btn btn-primary">
+                Demo
+              </a>
+              <a :href="selectedProject.githubLink" target="_blank" rel="noopener" class="btn btn-secondary" v-if="selectedProject.githubLink">
+                GitHub
+              </a>
+              <p class="btn btn-secondary" v-else>private content</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Transition>
+  </Teleport>
 </template>
 
 <script setup>
 import { ref, watch, onMounted, onUnmounted } from 'vue'
 import { t, locale } from '../i18n.js'
 
-const techStack = ['React', 'Vue.js', 'Node.js', 'MongoDB', 'JavaScript', 'SCSS', 'HTML5', 'CSS3', 'Git']
+const iconSprite = `${import.meta.env.BASE_URL}icons.svg`
+
+const techStack = [
+  { name: 'React', icon: 'react-icon' },
+  { name: 'Vue.js', icon: 'vue-icon' },
+  { name: 'Node.js', icon: 'node-icon' },
+  { name: 'MongoDB', icon: 'mongodb-icon' },
+  { name: 'JavaScript', icon: 'javascript-icon' },
+  { name: 'SCSS', icon: 'scss-icon' },
+  { name: 'HTML5', icon: 'html5-icon' },
+  { name: 'CSS3', icon: 'css3-icon' },
+  { name: 'Git', icon: 'git-icon' }
+]
 
 const displayedTitle = ref('')
 const typewriterEl = ref(null)
 let typewriterTimer = null
+
+// Modal state
+const selectedProject = ref(null)
+
+function openModal(project) {
+  selectedProject.value = project
+  document.body.style.overflow = 'hidden' // Prevent scrolling
+}
+
+function closeModal() {
+  selectedProject.value = null
+  document.body.style.overflow = ''
+}
+
+// Helper to resolve image path
+const getImageUrl = (name) => {
+  return new URL(`../assets/${name}`, import.meta.url).href
+}
 
 function typewrite(text) {
   displayedTitle.value = ''
@@ -89,20 +153,24 @@ onUnmounted(() => {
 .stack-grid {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 14px;
+	gap: 20px;
 	margin-bottom: 60px;
 	justify-content: center;
 }
 
 .stack-badge {
-	display: inline-flex;
+	display: flex;
+	flex-direction: column;
 	align-items: center;
-	gap: 8px;
-	padding: 10px 20px;
+	justify-content: center;
+	gap: 12px;
+	padding: 16px;
+	width: 110px;
+	height: 110px;
 	background: var(--badge-bg);
 	color: var(--badge-text);
-	border-radius: 999px;
-	font-size: 0.9rem;
+	border-radius: var(--radius);
+	font-size: 0.85rem;
 	font-weight: 600;
 	font-family: var(--font-mono);
 	border: 1px solid transparent;
@@ -115,8 +183,20 @@ onUnmounted(() => {
 }
 
 .stack-badge:hover {
-	transform: translateY(-2px);
-	box-shadow: 0 4px 15px var(--accent-glow);
+	transform: translateY(-4px);
+	box-shadow: 0 8px 20px var(--accent-glow);
+	border-color: var(--accent);
+}
+
+.tech-icon {
+	width: 40px;
+	height: 40px;
+	fill: currentColor;
+	transition: transform 0.3s ease;
+}
+
+.stack-badge:hover .tech-icon {
+	transform: scale(1.1);
 }
 
 /* ============================================
@@ -143,6 +223,7 @@ onUnmounted(() => {
 	animation: fadeUpCard 0.6s ease forwards;
 	position: relative;
 	font-family: var(--font-mono);
+  cursor: pointer;
 }
 
 .project-card:nth-child(1) {
@@ -173,6 +254,16 @@ onUnmounted(() => {
 
 .project-card-header {
 	padding: 28px 28px 0;
+}
+
+.project-card-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  object-position: top;
+  border-radius: var(--radius-sm);
+  margin: 14px 0;
+  border: 1px solid var(--card-border);
 }
 
 .project-card-tech {
@@ -241,6 +332,149 @@ onUnmounted(() => {
 	50% {
 		border-color: transparent;
 	}
+}
+
+/* ============================================
+   MODAL
+   ============================================ */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 24px;
+}
+
+.modal-content {
+  background: #161636;
+  border: 1px solid #2a2a5a;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 600px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 255, 136, 0.12);
+  animation: modalPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  font-family: 'Fira Code', monospace;
+  color: #e2e8f0;
+}
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: rgba(0,0,0,0.5);
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 10;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.modal-close:hover {
+  background: #00ff88;
+}
+
+.modal-image-wrapper {
+  width: 100%;
+  height: 320px;
+  background: #000;
+}
+
+.modal-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.modal-body {
+  padding: 20px;
+}
+
+.modal-title {
+  font-family: 'Fira Code', monospace;
+  font-size: 1.8rem;
+  color: #e2e8f0;
+  margin-bottom: 16px;
+}
+
+.modal-desc {
+  color: #94a3b8;
+  line-height: 1.8;
+  margin-bottom: 32px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 16px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  flex: 1;
+}
+
+.btn-primary {
+  background: #00ff88;
+  color: #000;
+}
+
+.btn-primary:hover {
+  background: #00cc6a;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 255, 136, 0.3);
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid #00ff88;
+  color: #00ff88;
+}
+
+.btn-secondary:hover {
+  background: rgba(0, 255, 136, 0.08);
+  transform: translateY(-2px);
+}
+
+@keyframes modalPop {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modal-fade-enter-active,
+.modal-fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.modal-fade-enter-from,
+.modal-fade-leave-to {
+  opacity: 0;
 }
 
 @media (max-width: 768px) {

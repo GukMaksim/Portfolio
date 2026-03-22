@@ -30,4 +30,37 @@
   <symbol id="x-icon" viewBox="0 0 19 19">
     <path fill="#08060d" fill-rule="evenodd" d="M1.893 1.98c.052.072 1.245 1.769 2.653 3.77l2.892 4.114c.183.261.333.48.333.486s-.068.089-.152.183l-.522.593-.765.867-3.597 4.087c-.375.426-.734.834-.798.905a1 1 0 0 0-.118.148c0 .01.236.017.664.017h.663l.729-.83c.4-.457.796-.906.879-.999a692 692 0 0 0 1.794-2.038c.034-.037.301-.34.594-.675l.551-.624.345-.392a7 7 0 0 1 .34-.374c.006 0 .93 1.306 2.052 2.903l2.084 2.965.045.063h2.275c1.87 0 2.273-.003 2.266-.021-.008-.02-1.098-1.572-3.894-5.547-2.013-2.862-2.28-3.246-2.273-3.266.008-.019.282-.332 2.085-2.38l2-2.274 1.567-1.782c.022-.028-.016-.03-.65-.03h-.674l-.3.342a871 871 0 0 1-1.782 2.025c-.067.075-.405.458-.75.852a100 100 0 0 1-.803.91c-.148.172-.299.344-.99 1.127-.304.343-.32.358-.345.327-.015-.019-.904-1.282-1.976-2.808L6.365 1.85H1.8zm1.782.91 8.078 11.294c.772 1.08 1.413 1.973 1.425 1.984.016.017.241.02 1.05.017l1.03-.004-2.694-3.766L7.796 5.75 5.722 2.852l-1.039-.004-1.039-.004z" clip-rule="evenodd"/>
   </symbol>
+  <symbol id="react-icon" viewBox="-11.5 -10.232 23 20.463">
+    <circle cx="0" cy="0" r="2.05" fill="currentColor"/>
+    <g stroke="currentColor" stroke-width="1" fill="none">
+      <ellipse rx="11" ry="4.2"/>
+      <ellipse rx="11" ry="4.2" transform="rotate(60)"/>
+      <ellipse rx="11" ry="4.2" transform="rotate(120)"/>
+    </g>
+  </symbol>
+  <symbol id="vue-icon" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M2,3H6.5L12,12.5L17.5,3H22L12,20.5L2,3Z"/>
+    <path fill="currentColor" opacity="0.5" d="M6.5,3H10.5L12,5.5L13.5,3H17.5L12,12.5L6.5,3Z"/>
+  </symbol>
+  <symbol id="node-icon" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M12,2L2,7V17L12,22L22,17V7L12,2Z M12,18.5L5,14.5V9.5L12,5.5L19,9.5V14.5L12,18.5Z"/>
+  </symbol>
+  <symbol id="mongodb-icon" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M12,2C12,2 4,8 4,14C4,18.42 7.58,22 12,22C16.42,22 20,18.42 20,14C20,8 12,2 12,2Z"/>
+  </symbol>
+  <symbol id="javascript-icon" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M3,3H21V21H3V3M13.5,16V13H15V16H13.5M9,16V12H10.5V16H9Z"/> <!-- Abstract placeholder -->
+  </symbol>
+  <symbol id="scss-icon" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4Z"/>
+  </symbol>
+  <symbol id="html5-icon" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M2,2H22L20,19L12,22L4,19L2,2M12,18L17.5,16L18.5,5H5.5L6,9H17L16.5,14L12,15.5L7.5,14L7,11H4L5,16L12,18Z"/>
+  </symbol>
+  <symbol id="css3-icon" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M2,2H22L20,19L12,22L4,19L2,2M12,18L17.5,16L18.5,5H12V9H17L16.5,14L12,15.5V18Z"/>
+  </symbol>
+  <symbol id="git-icon" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M12,2L2,12L12,22L22,12L12,2M11,6V13H13V6H11M11,15V17H13V15H11Z"/>
+  </symbol>
 </svg>
