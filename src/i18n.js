@@ -124,9 +124,9 @@ const messages = {
       projectsTitle: 'Проєкти',
       projects: [
         {
-          title: 'PWA Застосунок (бекенд + фронтенд)',
-          tech: 'Vue.js / Node.js',
-          image: 'test_image.jpg',
+          title: 'ФАЙНА ПІЧ',
+          tech: 'PWA Застосунок (бекенд + фронтенд)',
+          image: 'project_FainaPich.jpg',
           description: 'Повноцінний застосунок (PWA-ready): Frontend: Vue 3 + Vite + Pinia + Axios, Backend: Node.js + Express + Mongoose + Cloudinary',
           demoLink: 'https://faina-pich.vercel.app/',          
         },
@@ -153,6 +153,14 @@ const messages = {
           description: 'Простий лендінг, що демонструє базові можливості HTML, CSS та JavaScript.',
           demoLink: 'https://gukmaksim.github.io/mirro-site/',
           githubLink: 'https://github.com/GukMaksim/mirro-site',
+        },
+        {
+          title: 'Ветеринарна клініка MixLab',
+          tech: 'Лендінг',
+          image: 'project_MixLab.jpg',
+          description: 'Вебсайт-візитівка ветеринарної клініки MixLab',
+          demoLink: 'https://gukmaksim.github.io/mixlab/',
+          githubLink: 'https://github.com/GukMaksim/mixlab',
         },
       ],
     },
@@ -292,9 +300,9 @@ const messages = {
       projectsTitle: 'Projects',
       projects: [
         {
-          title: 'PWA Application (backend + frontend)',
-          tech: 'Vue.js / Node.js',
-          image: 'test_image.jpg',
+          title: 'Faina Pich',
+          tech: 'PWA Application (backend + frontend)',
+          image: 'project_FainaPich.jpg',
           description: 'Full-featured application (PWA-ready): Frontend: Vue 3 + Vite + Pinia + Axios, Backend: Node.js + Express + Mongoose + Cloudinary',
           demoLink: 'https://faina-pich.vercel.app/',          
         },
@@ -321,6 +329,14 @@ const messages = {
           description: 'Simple landing page demonstrating the basic capabilities of HTML, CSS and JavaScript.',
           demoLink: 'https://gukmaksim.github.io/mirro-site/',
           githubLink: 'https://github.com/GukMaksim/mirro-site',
+        },
+        {
+          title: 'Veterinary Clinic MixLab',
+          tech: 'Landing Page',
+          image: 'project_MixLab.jpg',
+          description: 'Website-business card of the veterinary clinic MixLab',
+          demoLink: 'https://gukmaksim.github.io/mixlab/',
+          githubLink: 'https://github.com/GukMaksim/mixlab',
         },
       ],
 
