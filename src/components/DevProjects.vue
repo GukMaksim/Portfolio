@@ -55,8 +55,8 @@
           </div>
           
           <div class="modal-body">
-            <span class="project-card-tech">{{ selectedProject.tech }}</span>
-            <h3 class="modal-title">{{ selectedProject.title }}</h3>
+            <span class="project-card-tech">{{ selectedProject.title }}</span>
+            <!-- <h3 class="modal-title">{{ selectedProject.title }}</h3> -->
             <p class="modal-desc">{{ selectedProject.description }}</p>
             
             <div class="modal-actions">
@@ -297,6 +297,10 @@ onUnmounted(() => {
 	color: var(--text-secondary);
 	line-height: 1.7;
 	transition: color var(--transition);
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 /* Neon glow on dev cards */
@@ -412,8 +416,9 @@ onUnmounted(() => {
 
 .modal-desc {
   color: #94a3b8;
-  line-height: 1.8;
+  line-height: 1.4;
   margin-bottom: 32px;
+  font-size: 14px;
 }
 
 .modal-actions {
