@@ -170,6 +170,7 @@ const messages = {
         {edu: '1999 - 2004 НТУУ «КПІ» — Радіоелектроніка (Конструювання та виробництво електрообчислювальної апаратури), Магістр'},
         {edu: '2022 - 2023 DAN.IT Education — Frontend Developer', certificate: 'https://certificates.dan-it.com.ua/certificates/frontend/maksym-huk'},
       ],
+      certificate: 'Сертифікат',
       languagesTitle: 'Мови',
       languages: [
         { lang: 'Українська', level: 'Вільно' },
@@ -347,6 +348,7 @@ const messages = {
         {edu: '1999 - 2004 NTUU "KPI" — Radioelectronics (Design and production of electronic computing equipment), Master'},
         {edu: '2022 - 2023 DAN.IT Education — Frontend Developer', certificate: 'https://certificates.dan-it.com.ua/certificates/frontend/maksym-huk'},
       ],
+      certificate: 'Certificate',
       languagesTitle: 'Languages',
       languages: [
         { lang: 'Ukrainian', level: 'Fluent' },

@@ -66,7 +66,7 @@
               <a :href="selectedProject.githubLink" target="_blank" rel="noopener" class="btn btn-secondary" v-if="selectedProject.githubLink">
                 GitHub
               </a>
-              <p class="btn btn-secondary" v-else>private content</p>
+              <p class="btn btn-private" v-else>private content</p>
             </div>
           </div>
         </div>
@@ -459,6 +459,13 @@ onUnmounted(() => {
 .btn-secondary:hover {
   background: rgba(0, 255, 136, 0.08);
   transform: translateY(-2px);
+}
+
+.btn-private {
+  background: transparent;
+  border: 1px solid #475569;
+  color: #475569;
+  cursor: default;
 }
 
 @keyframes modalPop {

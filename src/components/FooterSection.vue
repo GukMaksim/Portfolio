@@ -7,7 +7,7 @@
           <h3 class="footer-col-title">{{ t('footer.educationTitle') }}</h3>
           <div v-for="(item, index) in t('footer.education')" :key="index">
             <p class="footer-text">{{ item.edu }}</p>
-            <a v-if="item.certificate" :href="item.certificate" target="_blank" rel="noopener" class="footer-certificate">Сертифікат</a>
+            <a v-if="item.certificate" :href="item.certificate" target="_blank" rel="noopener" class="footer-certificate">{{ t('footer.certificate') }}</a>
           </div>
         </div>
 
