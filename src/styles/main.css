@@ -21,11 +21,22 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	overflow-x: hidden;
+	font-family: var(--font-primary);
+	color: var(--text-primary);
+	background-color: var(--bg-primary);
+	transition:
+		background-color var(--transition),
+		color var(--transition);
+}
+
+#app {
+	min-height: 100vh;
 }
 
 a {
 	text-decoration: none;
 	color: inherit;
+	transition: color 0.2s ease;
 }
 
 ul,
@@ -42,95 +53,97 @@ img {
    THEME VARIABLES
    ============================================ */
 
+:root {
+	--font-primary: 'Inter', system-ui, -apple-system, sans-serif;
+	--font-display: 'Inter', system-ui, -apple-system, sans-serif;
+	--font-mono: 'Fira Code', monospace;
+
+	/* Fixed Hero Backgrounds */
+	--hero-sales-bg: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+	--hero-dev-bg: linear-gradient(135deg, #020617 0%, #0f172a 100%);
+}
+
 .theme-sales {
-	--bg-primary: #f0f4f8;
+	/* Light / Corporate Theme */
+	--bg-primary: #f8fafc;
 	--bg-secondary: #ffffff;
-	--bg-tertiary: #e8eef6;
-	--text-primary: #1e293b;
+	--bg-tertiary: #f1f5f9;
+	
+	--text-primary: #0f172a;
 	--text-secondary: #475569;
 	--text-muted: #94a3b8;
-	--accent: #2563eb;
-	--accent-hover: #1d4ed8;
-	--accent-light: rgba(37, 99, 235, 0.1);
-	--accent-glow: rgba(37, 99, 235, 0.25);
+	
+	--accent: #3b82f6; /* More vibrant blue */
+	--accent-hover: #2563eb;
+	--accent-light: rgba(59, 130, 246, 0.1);
+	--accent-glow: rgba(59, 130, 246, 0.2);
+	
 	--card-bg: #ffffff;
 	--card-border: #e2e8f0;
-	--card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
-	--card-shadow-hover: 0 20px 40px -8px rgba(37, 99, 235, 0.15);
-	--hero-left-bg: linear-gradient(135deg, #1e3a5f 0%, #2563eb 50%, #3b82f6 100%);
-	--hero-right-bg: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
-	--divider-color: rgba(255, 255, 255, 0.15);
-	--font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-	--font-heading: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-	--font-mono: 'Fira Code', monospace;
-	--font-secondary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+	--card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+	--card-shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+	
+	--divider-color: #cbd5e1;
+	
 	--radius: 16px;
 	--radius-sm: 8px;
-	--transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-	--section-py: 60px;
-	--container-max: 1200px;
-	--header-bg: rgba(255, 255, 255, 0.85);
-	--header-border: rgba(0, 0, 0, 0.06);
+	
+	--transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+	
+	--section-py: 80px;
+	--container-max: 1280px;
+	
+	--header-bg: rgba(255, 255, 255, 0.8);
+	--header-border: rgba(226, 232, 240, 0.6);
+	
 	--timeline-line: #cbd5e1;
-	--timeline-dot: #2563eb;
-	--badge-bg: #eef2ff;
-	--badge-text: #4338ca;
+	--timeline-dot: #3b82f6;
+	
+	--badge-bg: #eff6ff;
+	--badge-text: #2563eb;
 }
 
 .theme-dev {
-	--bg-primary: #0a0a1a;
-	--bg-secondary: #111128;
-	--bg-tertiary: #1a1a3a;
-	--text-primary: #e2e8f0;
-	--text-secondary: #94a3b8;
+	/* Dark / Cyberpunk Theme */
+	--bg-primary: #030712; /* Deep dark */
+	--bg-secondary: #111827;
+	--bg-tertiary: #1f2937;
+	
+	--text-primary: #f8fafc;
+	--text-secondary: #cbd5e1;
 	--text-muted: #64748b;
-	--accent: #00ff88;
-	--accent-hover: #00cc6a;
-	--accent-light: rgba(0, 255, 136, 0.08);
-	--accent-glow: rgba(0, 255, 136, 0.3);
-	--card-bg: #161636;
-	--card-border: #2a2a5a;
-	--card-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-	--card-shadow-hover: 0 20px 60px rgba(0, 255, 136, 0.12);
-	--hero-left-bg: linear-gradient(135deg, #1e3a5f 0%, #2563eb 50%, #3b82f6 100%);
-	--hero-right-bg: linear-gradient(135deg, #0a0a1a 0%, #0d0d2b 50%, #141430 100%);
-	--divider-color: rgba(0, 255, 136, 0.2);
+	
+	--accent: #10b981; /* Sharp Emerald */
+	--accent-hover: #059669;
+	--accent-light: rgba(16, 185, 129, 0.1);
+	--accent-glow: rgba(16, 185, 129, 0.25);
+	
+	--card-bg: #111827;
+	--card-border: #1f2937;
+	--card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+	--card-shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+	
+	--divider-color: #1f2937;
+	
 	--font-primary: 'Fira Code', monospace;
-	--font-heading: 'Fira Code', monospace;
-	--font-mono: 'Fira Code', monospace;
-	--font-secondary: 'Fira Code', monospace;
+	--font-display: 'Fira Code', monospace;
+	
 	--radius: 12px;
 	--radius-sm: 6px;
-	--transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+	
+	--transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+	
 	--section-py: 100px;
-	--container-max: 1200px;
-	--header-bg: rgba(10, 10, 26, 0.9);
-	--header-border: rgba(0, 255, 136, 0.1);
-	--timeline-line: #2a2a5a;
-	--timeline-dot: #00ff88;
-	--badge-bg: rgba(0, 255, 136, 0.1);
-	--badge-text: #00ff88;
-}
-
-/* ============================================
-   GLOBAL APP SHELL
-   ============================================ */
-#app {
-	font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-	color: var(--text-primary);
-	background-color: var(--bg-primary);
-	transition:
-		background-color var(--transition),
-		color var(--transition),
-		font-family 0.3s ease;
-	min-height: 100vh;
-}
-
-.container {
-	max-width: var(--container-max);
-	margin: 0 auto;
-	padding: 0 24px;
-	width: 100%;
+	--container-max: 1280px;
+	
+	--header-bg: rgba(3, 7, 18, 0.8);
+	--header-border: rgba(31, 41, 55, 0.6);
+	
+	--timeline-line: #1f2937;
+	--timeline-dot: #10b981;
+	
+	--badge-bg: rgba(16, 185, 129, 0.1);
+	--badge-text: #10b981;
 }
 
 /* ============================================
@@ -146,22 +159,30 @@ img {
 }
 
 .section-title {
-	font-family: var(--font-heading);
-	font-size: clamp(1.8rem, 3vw, 2.4rem);
-	font-weight: 700;
-	color: var(--text-primary);
-	margin-bottom: 16px;
+	font-family: var(--font-display);
+	font-size: clamp(2rem, 4vw, 3rem);
+	font-weight: 800;
+	color: var(--accent);
+	margin-bottom: 24px;
 	letter-spacing: -0.02em;
 	transition: color var(--transition);
+	line-height: 1.1;
 }
 
 .section-subtitle {
-	font-size: 1.05rem;
+	font-size: 1.125rem;
 	color: var(--text-secondary);
 	margin-bottom: 60px;
 	max-width: 600px;
-	line-height: 1.7;
+	line-height: 1.6;
 	transition: color var(--transition);
+}
+
+.container {
+	max-width: var(--container-max);
+	margin: 0 auto;
+	padding: 0 64px;
+	width: 100%;
 }
 
 /* ============================================
@@ -170,18 +191,18 @@ img {
 .fade-enter-active,
 .fade-leave-active {
 	transition:
-		opacity 0.4s ease,
-		transform 0.4s ease;
+		opacity 0.3s ease,
+		transform 0.3s ease;
 }
 
 .fade-enter-from {
 	opacity: 0;
-	transform: translateY(20px);
+	transform: translateY(10px);
 }
 
 .fade-leave-to {
 	opacity: 0;
-	transform: translateY(-20px);
+	transform: translateY(-10px);
 }
 
 /* ============================================
@@ -189,7 +210,7 @@ img {
    ============================================ */
 @media (max-width: 768px) {
 	.container {
-		padding: 0 16px;
+		padding: 0 20px;
 	}
 
 	.section {

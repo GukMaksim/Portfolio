@@ -29,13 +29,22 @@
           :key="index"
           class="project-card"
           @click="openModal(project)"
+          role="button"
+          tabindex="0"
+          @keydown.enter="openModal(project)"
         >
-          <div class="project-card-header">
-            <span class="project-card-tech">{{ project.tech }}</span>
-            <img :src="getImageUrl(project.image)" :alt="project.title" class="project-card-image" loading="lazy" />
-            <h3 class="project-card-title">{{ project.title }}</h3>
+          <div class="project-image-container">
+            <img :src="getAssetUrl(project.image)" :alt="project.title" class="project-card-image" loading="lazy" />
+            <div class="project-overlay">
+              <span class="view-btn">View Details</span>
+            </div>
           </div>
+          
           <div class="project-card-body">
+            <div class="project-card-header">
+              <span class="project-card-tech">{{ project.tech }}</span>
+              <h3 class="project-card-title">{{ project.title }}</h3>
+            </div>
             <p class="project-card-desc">{{ project.description }}</p>
           </div>
         </div>
@@ -47,26 +56,29 @@
   <Teleport to="body">
     <Transition name="modal-fade">
       <div v-if="selectedProject" class="modal-overlay" @click.self="closeModal">
-        <div class="modal-content">
-          <button class="modal-close" @click="closeModal">&times;</button>
+        <div class="modal-content" role="dialog" aria-modal="true">
+          <button class="modal-close" @click="closeModal" aria-label="Close modal">&times;</button>
           
           <div class="modal-image-wrapper">
-            <img :src="getImageUrl(selectedProject.image)" :alt="selectedProject.title" class="modal-image" />
+            <img :src="getAssetUrl(selectedProject.image)" :alt="selectedProject.title" class="modal-image" />
           </div>
           
           <div class="modal-body">
-            <span class="project-card-tech">{{ selectedProject.title }}</span>
-            <!-- <h3 class="modal-title">{{ selectedProject.title }}</h3> -->
+            <!-- <div class="modal-header">
+              <span class="project-card-tech">{{ selectedProject.tech }}</span>
+              <h3 class="modal-title">{{ selectedProject.title }}</h3>
+            </div> -->
+            
             <p class="modal-desc">{{ selectedProject.description }}</p>
             
             <div class="modal-actions">
               <a :href="selectedProject.demoLink" target="_blank" rel="noopener" class="btn btn-primary">
-                Demo
+                Live Demo
               </a>
               <a :href="selectedProject.githubLink" target="_blank" rel="noopener" class="btn btn-secondary" v-if="selectedProject.githubLink">
-                GitHub
+                GitHub Repo
               </a>
-              <p class="btn btn-private" v-else>private content</p>
+              <span class="btn btn-private" v-else>Private Repo</span>
             </div>
           </div>
         </div>
@@ -78,6 +90,7 @@
 <script setup>
 import { ref, watch, onMounted, onUnmounted } from 'vue'
 import { t, locale } from '../i18n.js'
+import { getAssetUrl } from '../utils/assets.js'
 
 const iconSprite = `${import.meta.env.BASE_URL}icons.svg`
 
@@ -102,17 +115,12 @@ const selectedProject = ref(null)
 
 function openModal(project) {
   selectedProject.value = project
-  document.body.style.overflow = 'hidden' // Prevent scrolling
+  document.body.style.overflow = 'hidden'
 }
 
 function closeModal() {
   selectedProject.value = null
   document.body.style.overflow = ''
-}
-
-// Helper to resolve image path
-const getImageUrl = (name) => {
-  return new URL(`../assets/${name}`, import.meta.url).href
 }
 
 function typewrite(text) {
@@ -154,7 +162,7 @@ onUnmounted(() => {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 20px;
-	margin-bottom: 60px;
+	margin-bottom: 20px;
 	justify-content: center;
 }
 
@@ -165,32 +173,29 @@ onUnmounted(() => {
 	justify-content: center;
 	gap: 12px;
 	padding: 16px;
-	width: 110px;
-	height: 110px;
-	background: var(--badge-bg);
-	color: var(--badge-text);
+	width: 100px;
+	height: 100px;
+	background: var(--bg-secondary);
+	color: var(--text-secondary);
 	border-radius: var(--radius);
-	font-size: 0.85rem;
+	font-size: 0.8rem;
 	font-weight: 600;
 	font-family: var(--font-mono);
-	border: 1px solid transparent;
+	border: 1px solid var(--card-border);
 	transition: all 0.3s ease;
 	cursor: default;
 }
 
-.theme-dev .stack-badge {
-	border-color: var(--card-border);
-}
-
 .stack-badge:hover {
-	transform: translateY(-4px);
-	box-shadow: 0 8px 20px var(--accent-glow);
+	transform: translateY(-5px);
 	border-color: var(--accent);
+	color: var(--accent);
+	box-shadow: 0 5px 15px var(--accent-light);
 }
 
 .tech-icon {
-	width: 40px;
-	height: 40px;
+	width: 36px;
+	height: 36px;
 	fill: currentColor;
 	transition: transform 0.3s ease;
 }
@@ -204,9 +209,9 @@ onUnmounted(() => {
    ============================================ */
 .projects-grid {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-	gap: 28px;
-	max-width: 1000px;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	gap: 32px;
+	max-width: 1200px;
 	margin: 0 auto;
 }
 
@@ -214,109 +219,126 @@ onUnmounted(() => {
 	background: var(--card-bg);
 	border: 1px solid var(--card-border);
 	border-radius: var(--radius);
-	padding: 0;
 	overflow: hidden;
 	box-shadow: var(--card-shadow);
 	transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 	opacity: 0;
 	transform: translateY(30px);
 	animation: fadeUpCard 0.6s ease forwards;
-	position: relative;
-	font-family: var(--font-mono);
+	display: flex;
+	flex-direction: column;
   cursor: pointer;
 }
 
-.project-card:nth-child(1) {
-	animation-delay: 0.1s;
-}
-.project-card:nth-child(2) {
-	animation-delay: 0.25s;
-}
-.project-card:nth-child(3) {
-	animation-delay: 0.4s;
-}
-.project-card:nth-child(4) {
-	animation-delay: 0.55s;
-}
+.project-card:nth-child(1) { animation-delay: 0.1s; }
+.project-card:nth-child(2) { animation-delay: 0.2s; }
+.project-card:nth-child(3) { animation-delay: 0.3s; }
+.project-card:nth-child(4) { animation-delay: 0.4s; }
 
 @keyframes fadeUpCard {
-	to {
-		opacity: 1;
-		transform: translateY(0);
-	}
+	to { opacity: 1; transform: translateY(0); }
 }
 
 .project-card:hover {
-	transform: translateY(-6px) scale(1.02);
+	transform: translateY(-8px);
 	box-shadow: var(--card-shadow-hover);
-	border-color: var(--accent);
+	border-color: var(--accent-light);
 }
 
-.project-card-header {
-	padding: 28px 28px 0;
+.project-image-container {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--card-border);
 }
 
 .project-card-image {
   width: 100%;
-  height: 180px;
+  height: 100%;
   object-fit: cover;
-  object-position: top;
-  border-radius: var(--radius-sm);
-  margin: 14px 0;
-  border: 1px solid var(--card-border);
+  transition: transform 0.6s ease;
+}
+
+.project-card:hover .project-card-image {
+  transform: scale(1.05);
+}
+
+.project-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.project-card:hover .project-overlay {
+  opacity: 1;
+}
+
+.view-btn {
+  background: var(--accent);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transform: translateY(10px);
+  transition: transform 0.3s ease;
+}
+
+:global(.theme-dev) .view-btn {
+  color: #000;
+}
+
+.project-card:hover .view-btn {
+  transform: translateY(0);
+}
+
+.project-card-body {
+	padding: 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card-header {
+  margin-bottom: 12px;
 }
 
 .project-card-tech {
 	display: inline-block;
-	font-size: 0.75rem;
+	font-size: 0.7rem;
 	font-weight: 700;
 	color: var(--accent);
 	background: var(--accent-light);
-	padding: 4px 12px;
-	border-radius: 999px;
+	padding: 4px 10px;
+	border-radius: 6px;
 	text-transform: uppercase;
-	letter-spacing: 1px;
+	letter-spacing: 0.5px;
 	font-family: var(--font-mono);
-	margin-bottom: 14px;
+	margin-bottom: 12px;
 }
 
 .project-card-title {
-	font-size: 1.3rem;
+	font-size: 1.25rem;
 	font-weight: 700;
 	color: var(--text-primary);
-	margin-bottom: 10px;
-	transition: color var(--transition);
-}
-
-.project-card-body {
-	padding: 0 28px 28px;
+	line-height: 1.3;
 }
 
 .project-card-desc {
-	font-size: 0.9rem;
+	font-size: 0.95rem;
 	color: var(--text-secondary);
-	line-height: 1.7;
-	transition: color var(--transition);
+	line-height: 1.6;
     display: -webkit-box;
-    -webkit-line-clamp: 5;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
-}
-
-/* Neon glow on dev cards */
-.theme-dev .project-card::after {
-	content: '';
-	position: absolute;
-	inset: -1px;
-	border-radius: var(--radius);
-	background: linear-gradient(135deg, transparent 40%, var(--accent-glow) 100%);
-	z-index: -1;
-	opacity: 0;
-	transition: opacity 0.4s ease;
-}
-
-.theme-dev .project-card:hover::after {
-	opacity: 1;
 }
 
 /* ============================================
@@ -324,18 +346,13 @@ onUnmounted(() => {
    ============================================ */
 .typewriter {
 	display: inline;
-	border-right: 5px solid var(--accent);
+	border-right: 3px solid var(--accent);
 	animation: cursorBlink 1s step-end infinite;
 }
 
 @keyframes cursorBlink {
-	0%,
-	100% {
-		border-color: var(--accent);
-	}
-	50% {
-		border-color: transparent;
-	}
+	0%, 100% { border-color: var(--accent); }
+	50% { border-color: transparent; }
 }
 
 /* ============================================
@@ -344,27 +361,27 @@ onUnmounted(() => {
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.75);
+  background: rgba(0, 0, 0, 0.85);
   backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  padding: 24px;
+  padding: 20px;
 }
 
 .modal-content {
-  background: #161636;
-  border: 1px solid #2a2a5a;
-  border-radius: 12px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
   width: 100%;
-  max-width: 600px;
+  max-width: 800px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0, 255, 136, 0.12);
-  animation: modalPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-  font-family: 'Fira Code', monospace;
-  color: #e2e8f0;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
 .modal-close {
@@ -374,27 +391,33 @@ onUnmounted(() => {
   background: rgba(0,0,0,0.5);
   border: none;
   color: #fff;
-  font-size: 2rem;
+  font-size: 24px;
   line-height: 1;
   cursor: pointer;
   z-index: 10;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.2s;
+  transition: all 0.2s;
 }
 
 .modal-close:hover {
-  background: #00ff88;
+  background: var(--accent);
+  color: #fff;
+}
+
+:global(.theme-dev) .modal-close:hover {
+  color: #000;
 }
 
 .modal-image-wrapper {
   width: 100%;
-  height: 320px;
+  height: 370px;
   background: #000;
+  flex-shrink: 0;
 }
 
 .modal-image {
@@ -404,81 +427,86 @@ onUnmounted(() => {
 }
 
 .modal-body {
-  padding: 20px;
+  padding: 32px;
+  overflow-y: auto;
+}
+
+.modal-header {
+  margin-bottom: 24px;
 }
 
 .modal-title {
-  font-family: 'Fira Code', monospace;
-  font-size: 1.8rem;
-  color: #e2e8f0;
-  margin-bottom: 16px;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--text-primary);
+  margin-top: 8px;
 }
 
 .modal-desc {
-  color: #94a3b8;
-  line-height: 1.4;
+  color: var(--text-secondary);
+  line-height: 1.7;
   margin-bottom: 32px;
-  font-size: 14px;
+  font-size: 1.05rem;
 }
 
 .modal-actions {
   display: flex;
   gap: 16px;
+  flex-wrap: wrap;
 }
 
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 12px 24px;
-  border-radius: 6px;
+  padding: 12px 28px;
+  border-radius: 8px;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
   transition: all 0.3s ease;
-  flex: 1;
+  min-width: 140px;
+  text-align: center;
+  font-size: 0.9rem;
 }
 
 .btn-primary {
-  background: #00ff88;
+  background: var(--accent);
+  color: #fff;
+  border: 1px solid var(--accent);
+}
+
+:global(.theme-dev) .btn-primary {
   color: #000;
 }
 
 .btn-primary:hover {
-  background: #00cc6a;
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 255, 136, 0.3);
+  box-shadow: 0 4px 12px var(--accent-light);
 }
 
 .btn-secondary {
   background: transparent;
-  border: 1px solid #00ff88;
-  color: #00ff88;
+  border: 1px solid var(--card-border);
+  color: var(--text-primary);
 }
 
 .btn-secondary:hover {
-  background: rgba(0, 255, 136, 0.08);
+  border-color: var(--accent);
+  color: var(--accent);
   transform: translateY(-2px);
 }
 
 .btn-private {
-  background: transparent;
-  border: 1px solid #475569;
-  color: #475569;
-  cursor: default;
+  background: var(--bg-tertiary);
+  color: var(--text-muted);
+  cursor: not-allowed;
+  border: 1px solid var(--card-border);
 }
 
-@keyframes modalPop {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
+/* Transitions */
 .modal-fade-enter-active,
 .modal-fade-leave-active {
   transition: opacity 0.3s ease;
@@ -489,10 +517,57 @@ onUnmounted(() => {
   opacity: 0;
 }
 
+.modal-fade-enter-active .modal-content {
+  animation: modalSlideIn 0.3s ease-out;
+}
+
+.modal-fade-leave-active .modal-content {
+  animation: modalSlideIn 0.3s ease-in reverse;
+}
+
+@keyframes modalSlideIn {
+  from { opacity: 0; transform: scale(0.95) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
 @media (max-width: 768px) {
-	.projects-grid {
-		grid-template-columns: 1fr;
-		gap: 20px;
-	}
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .stack-grid {
+    gap: 12px;
+  }
+  
+  .stack-badge {
+    width: 80px;
+    height: 80px;
+    padding: 10px;
+    font-size: 0.7rem;
+  }
+  
+  .modal-content {
+    max-height: 95vh;
+  }
+  
+  .modal-image-wrapper {
+    height: 200px;
+  }
+  
+  .modal-body {
+    padding: 20px;
+  }
+  
+  .modal-title {
+    font-size: 1.5rem;
+  }
+  
+  .modal-actions {
+    flex-direction: column;
+  }
+  
+  .btn {
+    width: 100%;
+  }
 }
 </style>

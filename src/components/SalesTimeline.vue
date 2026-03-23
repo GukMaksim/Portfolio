@@ -6,12 +6,19 @@
       <div class="timeline" :key="'timeline-' + locale">
         <div v-for="(item, index) in t('sales.timeline')" :key="index" class="timeline-item">
           <div class="timeline-dot"></div>
-          <div class="timeline-card accordion-item" :class="{ active: activeIndex === index }"
-            @click="toggleAccordion(index)">
+          <div 
+            class="timeline-card accordion-item" 
+            :class="{ active: activeIndex === index }"
+            @click="toggleAccordion(index)"
+            @keydown.enter="toggleAccordion(index)"
+            role="button"
+            :aria-expanded="activeIndex === index"
+            tabindex="0"
+          >
             <div class="accordion-header">
               <div class="accordion-header-main">
                 <div v-if="item.logo" class="timeline-logo">
-                  <img :src="getLogoUrl(item.logo)" :alt="item.company" />
+                  <img :src="getAssetUrl(item.logo)" :alt="item.company" loading="lazy" />
                 </div>
                 <div class="timeline-info">
                   <div class="timeline-period">{{ item.period }}</div>
@@ -26,13 +33,15 @@
               </div>
             </div>
 
-            <div class="accordion-content">
-              <p class="timeline-desc">{{ item.description }}</p>
-              <ul v-if="item.responsibilities" class="timeline-responsibilities">
-                <li v-for="(resp, i) in item.responsibilities" :key="i">
-                  {{ resp }}
-                </li>
-              </ul>
+            <div class="accordion-content" :style="{ maxHeight: activeIndex === index ? '1000px' : '0' }">
+              <div class="accordion-inner">
+                <p class="timeline-desc">{{ item.description }}</p>
+                <ul v-if="item.responsibilities" class="timeline-responsibilities">
+                  <li v-for="(resp, i) in item.responsibilities" :key="i">
+                    {{ resp }}
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -43,7 +52,7 @@
   <section class="section section-alt" id="sales-achievements">
     <div class="container">
       <h2 class="section-title" style="text-align: center;">{{ t('sales.achievementsTitle') }}</h2>
-      <div style="height: 16px;"></div>
+      <div style="height: 32px;"></div>
 
       <div class="achievements" :key="'ach-' + locale">
         <div v-for="(item, index) in t('sales.achievements')" :key="index" class="achievement-card">
@@ -58,15 +67,12 @@
 <script setup>
 import { ref } from 'vue'
 import { t, locale } from '../i18n.js'
+import { getAssetUrl } from '../utils/assets.js'
 
 const activeIndex = ref(null)
 
 const toggleAccordion = (index) => {
   activeIndex.value = activeIndex.value === index ? null : index
-}
-
-const getLogoUrl = (name) => {
-  return new URL(`../assets/${name}`, import.meta.url).href
 }
 </script>
 
@@ -76,82 +82,86 @@ const getLogoUrl = (name) => {
    ============================================ */
 .timeline {
   position: relative;
-  padding-left: 40px;
-  max-width: 800px;
+  padding-left: 48px;
+  max-width: 900px;
   margin: 0 auto;
 }
 
 .timeline::before {
   content: '';
   position: absolute;
-  left: 15px;
+  left: 19px;
   top: 0;
   bottom: 0;
   width: 2px;
   background: var(--timeline-line);
-  transition: background var(--transition);
+  opacity: 0.5;
 }
 
 .timeline-item {
   position: relative;
-  padding-bottom: 48px;
+  padding-bottom: 40px;
   opacity: 0;
-  transform: translateX(-20px);
+  transform: translateY(20px);
   animation: slideInTimeline 0.6s ease forwards;
 }
 
-.timeline-item:nth-child(1) {
-  animation-delay: 0.1s;
-}
-
-.timeline-item:nth-child(2) {
-  animation-delay: 0.3s;
-}
-
-.timeline-item:nth-child(3) {
-  animation-delay: 0.5s;
-}
+.timeline-item:nth-child(1) { animation-delay: 0.1s; }
+.timeline-item:nth-child(2) { animation-delay: 0.2s; }
+.timeline-item:nth-child(3) { animation-delay: 0.3s; }
+.timeline-item:nth-child(4) { animation-delay: 0.4s; }
 
 @keyframes slideInTimeline {
   to {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateY(0);
   }
 }
 
 .timeline-dot {
   position: absolute;
-  left: -33px;
-  top: 6px;
-  width: 14px;
-  height: 14px;
+  left: -37px;
+  top: 24px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
-  background: var(--timeline-dot);
-  border: 3px solid var(--bg-primary);
-  box-shadow: 0 0 0 3px var(--accent-glow);
-  transition:
-    background var(--transition),
-    border-color var(--transition);
+  background: var(--bg-primary);
+  border: 4px solid var(--timeline-dot);
+  box-shadow: 0 0 0 4px var(--bg-primary); 
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.timeline-card.active ~ .timeline-dot,
+.timeline-card:hover ~ .timeline-dot {
+  transform: scale(1.2);
+  border-color: var(--accent);
 }
 
 .timeline-card {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: var(--radius);
-  padding: 0;
   box-shadow: var(--card-shadow);
-  transition: all var(--transition);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   cursor: pointer;
   overflow: hidden;
+  position: relative;
 }
 
 .timeline-card:hover {
   box-shadow: var(--card-shadow-hover);
   transform: translateY(-2px);
+  border-color: var(--accent-light);
+}
+
+.timeline-card:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 .accordion-header {
-  padding: 28px 32px;
+  padding: 24px;
   position: relative;
   display: flex;
   align-items: center;
@@ -166,16 +176,16 @@ const getLogoUrl = (name) => {
 }
 
 .timeline-logo {
-  width: 120px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
   flex-shrink: 0;
   border-radius: var(--radius-sm);
-  overflow: hidden;
   background: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 1px solid var(--card-border);
+  padding: 8px;
 }
 
 .timeline-logo img {
@@ -189,88 +199,95 @@ const getLogoUrl = (name) => {
 }
 
 .accordion-icon {
+  color: var(--text-muted);
+  transition: transform 0.3s ease, color 0.3s ease;
+  margin-left: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--bg-tertiary);
+}
+
+.timeline-card:hover .accordion-icon {
   color: var(--accent);
-  transition: transform 0.3s ease;
-  margin-left: 20px;
+  background: var(--accent-light);
 }
 
 .timeline-card.active .accordion-icon {
   transform: rotate(180deg);
+  background: var(--accent);
+  color: #fff;
 }
 
+/* Accordion Content */
 .accordion-content {
-  max-height: 0;
-  padding: 0 32px;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.timeline-card.active .accordion-content {
-  max-height: 1000px;
-  padding-bottom: 28px;
-  opacity: 1;
-  visibility: visible;
+.accordion-inner {
+  padding: 0 24px 24px;
+  border-top: 1px solid var(--bg-tertiary);
+  margin-top: -8px; 
+  padding-top: 24px;
 }
 
 .timeline-period {
   font-size: 0.8rem;
   font-weight: 600;
   color: var(--accent);
-  margin-bottom: 6px;
+  margin-bottom: 4px;
   letter-spacing: 0.5px;
   text-transform: uppercase;
   font-family: var(--font-mono);
 }
 
 .timeline-company {
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 4px;
-  transition: color var(--transition);
+  line-height: 1.2;
 }
 
 .timeline-role {
   font-size: 0.95rem;
   color: var(--text-secondary);
-  margin-bottom: 0;
   font-weight: 500;
-  transition: color var(--transition);
-}
-
-.timeline-card.active .timeline-role {
-  margin-bottom: 12px;
 }
 
 .timeline-desc {
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  line-height: 1.7;
-  transition: color var(--transition);
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 16px;
 }
 
 .timeline-responsibilities {
-  margin-top: 12px;
   padding-left: 0;
 }
 
 .timeline-responsibilities li {
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   color: var(--text-secondary);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
   position: relative;
-  padding-left: 18px;
+  padding-left: 20px;
   line-height: 1.5;
-  transition: color var(--transition);
 }
 
 .timeline-responsibilities li::before {
-  content: '•';
+  content: '';
   position: absolute;
-  left: 0;
-  color: var(--accent);
-  font-weight: bold;
+  left: 6px;
+  top: 8px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
 }
 
 /* ============================================
@@ -278,9 +295,9 @@ const getLogoUrl = (name) => {
    ============================================ */
 .achievements {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 24px;
-  max-width: 900px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
@@ -288,48 +305,42 @@ const getLogoUrl = (name) => {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: var(--radius);
-  padding: 32px 24px;
+  padding: 40px 24px;
   text-align: center;
   box-shadow: var(--card-shadow);
-  transition: all var(--transition);
+  transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
-}
-
-.achievement-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .achievement-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-5px);
   box-shadow: var(--card-shadow-hover);
+  border-color: var(--accent-light);
 }
 
 .achievement-value {
-  font-size: 2.4rem;
+  font-size: 3rem;
   font-weight: 800;
   color: var(--accent);
   margin-bottom: 8px;
-  font-family: var(--font-heading);
-  transition: color var(--transition);
+  font-family: var(--font-display);
+  line-height: 1;
 }
 
 .achievement-label {
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: var(--text-secondary);
   font-weight: 500;
-  transition: color var(--transition);
 }
 
 @media (max-width: 768px) {
   .timeline {
-    padding-left: 30px;
+    padding-left: 32px;
   }
 
   .timeline::before {
@@ -337,23 +348,25 @@ const getLogoUrl = (name) => {
   }
 
   .timeline-dot {
-    left: -27px;
-  }
-
-  .timeline-card {
-    padding: 20px;
-  }
-
-  .timeline-info {
-    align-self: flex-start;
+    left: -29px;
+    top: 20px;
+    width: 14px;
+    height: 14px;
   }
 
   .accordion-header {
-    padding: 0;
+    padding: 16px;
   }
 
   .accordion-header-main {
     flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  
+  .timeline-logo {
+    width: 60px;
+    height: 60px;
   }
 
   .achievements {
@@ -363,20 +376,12 @@ const getLogoUrl = (name) => {
 }
 
 @media (max-width: 480px) {
-  .accordion-content {
-    padding: 0 0 0 16px;
-  }
-
   .achievements {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
-
-  .achievement-card {
-    padding: 20px 16px;
-  }
-
+  
   .achievement-value {
-    font-size: 1.8rem;
+    font-size: 2.5rem;
   }
 }
 </style>
