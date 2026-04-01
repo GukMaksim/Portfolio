@@ -125,9 +125,9 @@ const messages = {
       projects: [
         {
           title: 'ФАЙНА ПІЧ',
-          tech: 'PWA Застосунок',
+          tech: 'Flutter APP + WEB',
           image: 'project_FainaPich.jpg',
-          description: 'Повноцінний застосунок (PWA-ready): Frontend: Vue 3 + Vite + Pinia + Axios, Backend: Node.js + Express + Mongoose + Cloudinary. Реалізована система реєстрації та авторизації користувачів, корзина, оформлення замовлення, особистий кабінет користувача.',
+          description: 'Повноцінний застосунок та вебсайт: Frontend APP: Flutter, WEB: Vue 3 + Vite + Pinia + Axios, Backend: Firebase + Cloudinary. Реалізована система реєстрації та авторизації користувачів, корзина, оформлення замовлення, особистий кабінет користувача.',
           demoLink: 'https://faina-pich.vercel.app/',          
         },
         {
@@ -302,9 +302,9 @@ const messages = {
       projects: [
         {
           title: 'Faina Pich',
-          tech: 'PWA Application',
+          tech: 'Flutter APP + WEB',
           image: 'project_FainaPich.jpg',
-          description: 'Full-featured application (PWA-ready): Frontend: Vue 3 + Vite + Pinia + Axios, Backend: Node.js + Express + Mongoose + Cloudinary. Implemented user registration and authorization system, shopping cart, order placement, user personal account.',
+          description: 'Full-featured application + website: Frontend APP: Flutter, WEB: Vue 3 + Vite + Pinia + Axios, Backend: Firebase + Cloudinary. Implemented user registration and authorization system, shopping cart, order placement, user personal account.',
           demoLink: 'https://faina-pich.vercel.app/',          
         },
         {
