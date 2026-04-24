@@ -8,6 +8,8 @@ const messages = {
       mode: 'режим',
       manager: 'Менеджер',
       developer: 'Розробник',
+      print: 'Друкувати',
+      pdf: 'Зберегти PDF',
     },
     hero: {
       name: 'Максим Гук',
@@ -185,6 +187,8 @@ const messages = {
       mode: 'mode',
       manager: 'Manager',
       developer: 'Developer',
+      print: 'Print',
+      pdf: 'Save PDF',
     },
     hero: {
       name: 'Maksym Huk',

@@ -217,3 +217,90 @@ img {
 		padding: 60px 0;
 	}
 }
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+@media print {
+	:root {
+		--section-py: 20px;
+	}
+
+	body {
+		background-color: #fff !important;
+		color: #000 !important;
+		font-size: 10pt;
+	}
+
+	/* Hide web UI components during print */
+	.top-header,
+	#hero,
+	.section,
+	#footer {
+		display: none !important;
+	}
+
+	.container {
+		max-width: 100% !important;
+		padding: 0 !important;
+		margin: 0 !important;
+	}
+
+	.section {
+		padding: 20px 0 !important;
+		page-break-inside: avoid;
+	}
+
+	.hero-section {
+		background: none !important;
+		color: #000 !important;
+		padding: 0 !important;
+		min-height: auto !important;
+	}
+
+	.hero-content h1 {
+		color: #000 !important;
+		font-size: 24pt !important;
+	}
+
+	.hero-content h2,
+	.hero-content p {
+		color: #333 !important;
+	}
+
+	.section-title {
+		color: #000 !important;
+		font-size: 18pt !important;
+		margin-bottom: 10px !important;
+		border-bottom: 2px solid #000;
+	}
+
+	.card {
+		border: 1px solid #ccc !important;
+		box-shadow: none !important;
+		break-inside: avoid;
+		margin-bottom: 10px !important;
+	}
+
+	.theme-dev {
+		--bg-primary: #fff;
+		--text-primary: #000;
+		--accent: #000;
+		--card-bg: #fff;
+		--card-border: #ccc;
+	}
+
+	.theme-sales {
+		--bg-primary: #fff;
+		--text-primary: #000;
+		--accent: #000;
+		--card-bg: #fff;
+		--card-border: #ccc;
+	}
+
+	/* Force background graphics if user chooses to, but default to clean */
+	* {
+		-webkit-print-color-adjust: exact !important;
+		print-color-adjust: exact !important;
+	}
+}

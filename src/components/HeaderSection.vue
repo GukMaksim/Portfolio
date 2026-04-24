@@ -26,24 +26,38 @@
       </div>
 
       <!-- Language Toggle -->
-      <div class="lang-toggle">
-        <button
-          class="lang-btn"
-          :class="{ active: locale === 'ua' }"
-          @click="locale = 'ua'"
-          aria-label="Switch to Ukrainian"
-        >
-          UA
-        </button>
-        <span class="lang-divider">/</span>
-        <button
-          class="lang-btn"
-          :class="{ active: locale === 'en' }"
-          @click="locale = 'en'"
-          aria-label="Switch to English"
-        >
-          EN
-        </button>
+      <div class="right-controls">
+        <div class="action-buttons">
+          <button class="action-btn" @click="handlePrint" :title="t('nav.print')" aria-label="Print">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+            <span class="btn-text">{{ t('nav.print') }}</span>
+          </button>
+          
+          <button class="action-btn pdf-btn" @click="handlePdf" :title="t('nav.pdf')" aria-label="Save as PDF">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><polyline points="9 15 12 18 15 15"></polyline></svg>
+            <span class="btn-text">{{ t('nav.pdf') }}</span>
+          </button>
+        </div>
+
+        <div class="lang-toggle">
+          <button
+            class="lang-btn"
+            :class="{ active: locale === 'ua' }"
+            @click="locale = 'ua'"
+            aria-label="Switch to Ukrainian"
+          >
+            UA
+          </button>
+          <span class="lang-divider">/</span>
+          <button
+            class="lang-btn"
+            :class="{ active: locale === 'en' }"
+            @click="locale = 'en'"
+            aria-label="Switch to English"
+          >
+            EN
+          </button>
+        </div>
       </div>
     </div>
   </header>
@@ -51,6 +65,7 @@
 
 <script setup>
 import { t, locale } from '../i18n.js'
+import html2pdf from 'html2pdf.js'
 
 const props = defineProps({
   isDevMode: {
@@ -65,6 +80,38 @@ const setMode = (val) => {
   if (props.isDevMode !== val) {
     emit('update:isDevMode', val)
   }
+}
+
+const handlePrint = () => {
+  window.print()
+}
+
+const handlePdf = () => {
+  const element = document.getElementById('resume-template')
+  if (!element) return
+
+  // Temporarily show the element for capture
+  const originalDisplay = element.style.display
+  element.style.display = 'block'
+
+  const opt = {
+    margin: 0, 
+    filename: `Maksym_Huk_Resume_${props.isDevMode ? 'Developer' : 'Manager'}.pdf`,
+    image: { type: 'jpeg', quality: 1 },
+    html2canvas: { 
+      scale: 4, // Higher scale for better quality
+      useCORS: true, 
+      logging: false,
+      letterRendering: true,
+      windowWidth: 794 // Approximately A4 width in pixels at 96dpi
+    },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+  }
+  
+  html2pdf().set(opt).from(element).save().finally(() => {
+    // Restore original display
+    element.style.display = originalDisplay
+  })
 }
 </script>
 
@@ -93,6 +140,54 @@ const setMode = (val) => {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.right-controls {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--card-border);
+  color: var(--text-secondary);
+  padding: 8px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-family: var(--font-primary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.action-btn:hover {
+  background: var(--accent-light);
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.pdf-btn {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+:global(.theme-dev) .pdf-btn {
+  color: #000;
+}
+
+.pdf-btn:hover {
+  background: var(--accent-hover);
+  filter: brightness(1.1);
 }
 
 /* Mode Switcher */
@@ -208,6 +303,28 @@ const setMode = (val) => {
   .segment-btn {
     padding: 6px 12px;
     font-size: 0.8rem;
+  }
+
+  .btn-text {
+    display: none;
+  }
+
+  .action-btn {
+    padding: 8px;
+  }
+
+  .action-buttons {
+    gap: 8px;
+  }
+
+  .right-controls {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 425px) {
+  .action-buttons {
+    display: none;
   }
 }
 </style>

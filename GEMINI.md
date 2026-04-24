@@ -9,7 +9,6 @@ This project is a professional, dual-mode portfolio application for **Maksym Huk
   - **Dual-Mode Switcher**: Toggles content between Sales (Experience/Tenders) and Development (Projects/Tech Stack).
   - **Internationalization (i18n)**: Supports Ukrainian (UA) and English (EN) via a custom lightweight implementation.
   - **Responsive Design**: Built with modern CSS for cross-device compatibility.
-  - **PDF Generation**: Integrated `html2pdf.js` (potentially used for CV/Portfolio export).
 - **Main Technologies**:
   - **Framework**: Vue 3 (Composition API, `<script setup>`).
   - **Build Tool**: Vite.

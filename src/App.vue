@@ -15,6 +15,9 @@
     </Transition>
 
     <FooterSection />
+
+    <!-- Hidden Resume Template for Print/PDF -->
+    <ResumeTemplate :isDevMode="isDevMode" />
   </div>
 </template>
 
@@ -25,6 +28,7 @@ import HeroSection from './components/HeroSection.vue'
 import SalesTimeline from './components/SalesTimeline.vue'
 import DevProjects from './components/DevProjects.vue'
 import FooterSection from './components/FooterSection.vue'
+import ResumeTemplate from './components/ResumeTemplate.vue'
 
 const isDevMode = ref(false)
 
