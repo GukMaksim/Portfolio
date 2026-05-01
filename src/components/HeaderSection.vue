@@ -128,10 +128,10 @@ const handlePdf = () => {
   justify-content: center;
   padding: 0 24px;
   background: var(--header-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
   border-bottom: 1px solid var(--header-border);
-  transition: background 0.4s ease, border-color 0.4s ease;
+  transition: all var(--transition);
 }
 
 .header-content {

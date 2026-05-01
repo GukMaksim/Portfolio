@@ -7,7 +7,7 @@
         <div v-for="(item, index) in t('sales.timeline')" :key="index" class="timeline-item">
           <div class="timeline-dot"></div>
           <div 
-            class="timeline-card accordion-item" 
+            class="timeline-card accordion-item glass-card" 
             :class="{ active: activeIndex === index }"
             @click="toggleAccordion(index)"
             @keydown.enter="toggleAccordion(index)"
@@ -55,7 +55,7 @@
       <div style="height: 32px;"></div>
 
       <div class="achievements" :key="'ach-' + locale">
-        <div v-for="(item, index) in t('sales.achievements')" :key="index" class="achievement-card">
+        <div v-for="(item, index) in t('sales.achievements')" :key="index" class="achievement-card glass-card">
           <div class="achievement-value">{{ item.value }}</div>
           <div class="achievement-label">{{ item.label }}</div>
         </div>

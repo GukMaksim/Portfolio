@@ -181,6 +181,12 @@ const messages = {
       contactsTitle: 'Контакти',
       rights: '© 2026 Максим Гук. Усі права захищені.',
     },
+    seo: {
+      salesTitle: 'Максим Гук — Portfolio: IT Sales Manager',
+      devTitle: 'Максим Гук — Portfolio: Frontend Developer',
+      salesDesc: 'Портфоліо Максима Гука: досвід у B2B продажах ІТ-рішень, управлінні тендерами та проєктами.',
+      devDesc: 'Портфоліо Максима Гука: розробка сучасних веб-інтерфейсів на Vue.js, React та Flutter.',
+    }
   },
   en: {
     nav: {
@@ -361,6 +367,12 @@ const messages = {
       contactsTitle: 'Contacts',
       rights: '© 2026 Maksym Huk. All rights reserved.',
     },
+    seo: {
+      salesTitle: 'Maksym Huk — Portfolio: IT Sales Manager',
+      devTitle: 'Maksym Huk — Portfolio: Frontend Developer',
+      salesDesc: 'Maksym Huk portfolio: experience in B2B IT solutions sales, tender management and project management.',
+      devDesc: 'Maksym Huk portfolio: modern web interfaces development with Vue.js, React and Flutter.',
+    }
   },
 }
 

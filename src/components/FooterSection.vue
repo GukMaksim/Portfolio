@@ -50,11 +50,11 @@
             </a>
 
             <div class="footer-socials">
-              <a href="https://linkedin.com/in/maksymhuk" target="_blank" rel="noopener" class="footer-social-link" aria-label="LinkedIn">
+              <a href="https://linkedin.com/in/maksymhuk" target="_blank" rel="noopener" class="footer-social-link glass-card" aria-label="LinkedIn">
                 <svg><use :href="`${iconSprite}#linkedin-icon`"></use></svg>
               </a>
 
-              <a href="https://github.com/GukMaksim" target="_blank" rel="noopener" class="footer-social-link" aria-label="GitHub">
+              <a href="https://github.com/GukMaksim" target="_blank" rel="noopener" class="footer-social-link glass-card" aria-label="GitHub">
                 <svg><use :href="`${iconSprite}#github-icon`"></use></svg>
               </a>
             </div>

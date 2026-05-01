@@ -8,7 +8,7 @@
 
       <!-- Tech Stack Badges -->
       <div class="stack-grid">
-        <div v-for="tech in techStack" :key="tech.name" class="stack-badge">
+        <div v-for="tech in techStack" :key="tech.name" class="stack-badge glass-card">
           <svg class="tech-icon"><use :href="`${iconSprite}#${tech.icon}`"></use></svg>
           <span>{{ tech.name }}</span>
         </div>
@@ -27,14 +27,19 @@
         <div
           v-for="(project, index) in t('dev.projects')"
           :key="index"
-          class="project-card"
+          class="project-card glass-card"
           @click="openModal(project)"
           role="button"
           tabindex="0"
           @keydown.enter="openModal(project)"
         >
           <div class="project-image-container">
-            <img :src="getAssetUrl(project.image)" :alt="project.title" class="project-card-image" loading="lazy" />
+            <img 
+              :src="getAssetUrl(project.image)" 
+              :alt="`Screenshot of ${project.title} project`" 
+              class="project-card-image" 
+              loading="lazy" 
+            />
             <div class="project-overlay">
               <span class="view-btn">View Details</span>
             </div>
