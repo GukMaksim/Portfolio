@@ -126,6 +126,14 @@ const messages = {
       projectsTitle: 'Проєкти',
       projects: [
         {
+          title: 'Gazki Landing Page',
+          tech: 'Лендінг',
+          image: 'project_Markgazki.jpg',
+          description: 'Висококонверсійна посадкова сторінка (Video Sales Letter) для консалтингової компанії у сфері міжнародної торгівлі. Побудована на Vue 3 та TypeScript із фокусом на продуктивність та преміальний дизайн. Стек: Vue 3 (Composition API), TypeScript, Tailwind CSS, Vite. Сучасний, адаптивний дизайн з використанням фірмових кольорів (Gold & Dark Slate) для підкреслення статусу бренду. Реалізовано кастомний VSL-плеєр для головного торгового відео та безшовна інтеграція віджета Calendly для автоматизації запису на консультації.',
+          demoLink: 'https://gukmaksim.github.io/markgazki/',
+          githubLink: 'https://github.com/GukMaksim/markgazki',
+        },
+        {
           title: 'ФАЙНА ПІЧ',
           tech: 'Flutter APP + WEB',
           image: 'project_FainaPich.jpg',
@@ -310,6 +318,14 @@ const messages = {
       stackTitle: 'Tech Stack',
       projectsTitle: 'Projects',
       projects: [
+        {
+          title: 'Gazki Landing Page',
+          tech: 'Landing Page',
+          image: 'project_Markgazki.jpg',
+          description: 'High-converting landing page (Video Sales Letter) for an international trade consulting company. Built on Vue 3 and TypeScript with a focus on performance and premium design. Stack: Vue 3 (Composition API), TypeScript, Tailwind CSS, Vite. Modern, responsive design using corporate colors (Gold & Dark Slate) to emphasize the brand status. Implemented a custom VSL player for the main sales video and seamless integration of the Calendly widget to automate appointment booking.',
+          demoLink: 'https://gukmaksim.github.io/markgazki/',
+          githubLink: 'https://github.com/GukMaksim/markgazki',
+        },
         {
           title: 'Faina Pich',
           tech: 'Flutter APP + WEB',
