@@ -126,6 +126,14 @@ const messages = {
       projectsTitle: 'Проєкти',
       projects: [
         {
+          title: 'Sector Genesis | Sci-Fi Incremental Survivor Game',
+          tech: 'Браузерна гра',
+          image: 'project_Sector-Genesis.jpg',
+          description: 'Sector Genesis — це високопродуктивна браузерна інкрементальна гра у жанрі "survivor-style" в сетингу наукової фантастики. Проєкт поєднує динамічний авто-бій (натхненний Vampire Survivors) із глибокою системою еволюції фракцій (у стилі StarCraft) та постійним мета-прогресом. Технологічний стек: Frontend: Vue 3 (Composition API), TypeScript. Графічний рушій: Pixi.js v8 (2D WebGL/WebGPU). Стейт-менеджмент: Pinia. Стилізація: Tailwind CSS. Збірка: Vite',
+          demoLink: 'https://sector-genesis.vercel.app/',
+          githubLink: 'https://github.com/GukMaksim/Sector-Genesis',
+        },
+        {
           title: 'Gazki Landing Page',
           tech: 'Лендінг',
           image: 'project_Markgazki.jpg',
@@ -318,6 +326,14 @@ const messages = {
       stackTitle: 'Tech Stack',
       projectsTitle: 'Projects',
       projects: [
+        {
+          title: 'Sector Genesis | Sci-Fi Incremental Survivor Game',
+          tech: 'Browser game',
+          image: 'project_Sector-Genesis.jpg',
+          description: 'Sector Genesis — is a high-performance browser-based incremental survivor-style game in a science fiction setting. The project combines dynamic auto-battle (inspired by Vampire Survivors) with a deep system of faction evolution (in the style of StarCraft) and constant meta-progress. Technology stack: Frontend: Vue 3 (Composition API), TypeScript. Graphics engine: Pixi.js v8 (2D WebGL/WebGPU). State management: Pinia. Styling: Tailwind CSS. Assembly: Vite',
+          demoLink: 'https://sector-genesis.vercel.app/',
+          githubLink: 'https://github.com/GukMaksim/Sector-Genesis',
+        },
         {
           title: 'Gazki Landing Page',
           tech: 'Landing Page',
