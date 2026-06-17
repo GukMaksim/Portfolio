@@ -65,6 +65,7 @@
 <script setup>
 import { t } from '../i18n.js'
 import { getAssetUrl } from '../utils/assets.js'
+import { useMode } from '../composables/useMode.js'
 
 const props = defineProps({
   isDevMode: {
@@ -75,11 +76,7 @@ const props = defineProps({
 
 const emit = defineEmits(['update:isDevMode'])
 
-const setMode = (val) => {
-  if (props.isDevMode !== val) {
-    emit('update:isDevMode', val)
-  }
-}
+const { setMode } = useMode(props, emit)
 </script>
 
 <style scoped>

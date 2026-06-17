@@ -90,6 +90,7 @@
 
 <script setup>
 import { t } from '../i18n.js'
+import { techStack } from '../constants/techStack.js'
 
 defineProps({
   isDevMode: {
@@ -97,18 +98,6 @@ defineProps({
     required: true
   }
 })
-
-const techStack = [
-  { name: 'React' },
-  { name: 'Vue.js' },
-  { name: 'Node.js' },
-  { name: 'MongoDB' },
-  { name: 'JavaScript' },
-  { name: 'SCSS' },
-  { name: 'HTML5' },
-  { name: 'CSS3' },
-  { name: 'Git' }
-]
 </script>
 
 <style scoped>

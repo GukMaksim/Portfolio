@@ -65,6 +65,7 @@
 
 <script setup>
 import { t, locale } from '../i18n.js'
+import { useMode } from '../composables/useMode.js'
 import html2pdf from 'html2pdf.js'
 
 const props = defineProps({
@@ -76,11 +77,7 @@ const props = defineProps({
 
 const emit = defineEmits(['update:isDevMode'])
 
-const setMode = (val) => {
-  if (props.isDevMode !== val) {
-    emit('update:isDevMode', val)
-  }
-}
+const { setMode } = useMode(props, emit)
 
 const handlePrint = () => {
   window.print()

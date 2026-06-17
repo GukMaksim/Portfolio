@@ -96,23 +96,11 @@
 import { ref, watch, onMounted, onUnmounted } from 'vue'
 import { t, locale } from '../i18n.js'
 import { getAssetUrl } from '../utils/assets.js'
+import { techStack } from '../constants/techStack.js'
 
 const iconSprite = `${import.meta.env.BASE_URL}icons.svg`
 
-const techStack = [
-  { name: 'React', icon: 'react-icon' },
-  { name: 'Vue.js', icon: 'vue-icon' },
-  { name: 'Node.js', icon: 'node-icon' },
-  { name: 'MongoDB', icon: 'mongodb-icon' },
-  { name: 'JavaScript', icon: 'javascript-icon' },
-  { name: 'SCSS', icon: 'scss-icon' },
-  { name: 'HTML5', icon: 'html5-icon' },
-  { name: 'CSS3', icon: 'css3-icon' },
-  { name: 'Git', icon: 'git-icon' }
-]
-
 const displayedTitle = ref('')
-const typewriterEl = ref(null)
 let typewriterTimer = null
 
 // Modal state
