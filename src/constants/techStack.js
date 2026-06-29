@@ -7,5 +7,5 @@ export const techStack = [
   { name: 'SCSS', icon: 'scss-icon' },
   { name: 'HTML5', icon: 'html5-icon' },
   { name: 'CSS3', icon: 'css3-icon' },
-  { name: 'Git', icon: 'git-icon' },
+  { name: 'Wordpress', icon: 'wordpress-icon' },
 ]
